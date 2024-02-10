@@ -4,6 +4,7 @@ import { cache } from "react";
 
 const getUser = cache(async () => {
   try {
+    console.log("user");
     const session = await auth();
     const email = session?.user?.email;
 

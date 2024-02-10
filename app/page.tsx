@@ -51,6 +51,8 @@ const SignOut = async ({ children }: { children: Children }) => {
 
 const Home: Page = async () => {
   const user = await api.get.user();
+  const settings = await api.get.settings();
+  const preferences = await api.get.preferences();
 
   return (
     <section className="text-white">
