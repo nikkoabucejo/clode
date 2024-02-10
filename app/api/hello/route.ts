@@ -15,7 +15,6 @@ export const GET = async () => {
       return NextResponse.json(context, { status: context.status });
     },
     error: (context) => {
-      console.log(1);
       return NextResponse.json(context, { status: context.status });
     },
   });
