@@ -11,7 +11,7 @@ const {
   signIn,
   signOut,
 } = NextAuth({
-  debug: true,
+  debug: false,
   adapter: PrismaAdapter(database),
   session: { strategy: "jwt" },
   providers,

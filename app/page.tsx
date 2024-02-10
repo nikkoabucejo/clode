@@ -1,5 +1,17 @@
 import api from "@libraries/api";
-import auth, { signIn, signOut } from "@libraries/auth";
+import { signIn, signOut } from "@libraries/auth";
+
+const LinkedSignIn = () => {
+  return (
+    <form
+      action={async () => {
+        "use server";
+        await signIn();
+      }}>
+      <button type="submit">Link account</button>
+    </form>
+  );
+};
 
 const SignIn = () => {
   return (
@@ -14,22 +26,31 @@ const SignIn = () => {
   );
 };
 
-const SignOut = ({ children }: { children: Children }) => {
+const SignOut = async ({ children }: { children: Children }) => {
+  const accounts = await api.get.accounts();
+
   return (
-    <form
-      action={async () => {
-        "use server";
-        await signOut();
-      }}>
-      <div>{children}</div>
-      <button type="submit">Sign out</button>
-    </form>
+    <div>
+      <form
+        action={async () => {
+          "use server";
+          await signOut();
+        }}>
+        <div>{children}</div>
+        <button type="submit">Sign out</button>
+      </form>
+      <LinkedSignIn />
+      <ul>
+        {accounts?.map((account) => (
+          <li key={account.id}>{account.provider}</li>
+        ))}
+      </ul>
+    </div>
   );
 };
 
 const Home: Page = async () => {
   const user = await api.get.user();
-  const session = await auth();
 
   return (
     <section className="text-white">
