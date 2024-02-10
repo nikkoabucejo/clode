@@ -24,12 +24,10 @@ const guard = async <TAuthenticatedResponse, TUnauthenticatedResponse>(
   const session = await auth();
 
   if (!session) {
-    return {
-      response: unauthenticated({
-        message: "Unauthorize",
-        status: 401,
-      }),
-    };
+    return unauthenticated({
+      message: "Unauthorize",
+      status: 401,
+    });
   }
 
   const context = {
@@ -52,7 +50,7 @@ const guard = async <TAuthenticatedResponse, TUnauthenticatedResponse>(
       context.status = 200;
   }
 
-  return { response: authenticated({ session, context }) };
+  return authenticated({ session, context });
 };
 
 export default guard;
