@@ -4,14 +4,13 @@ import api from ".";
 
 const getPreferences = cache(async () => {
   try {
-    console.log("preferences");
-    const settings = await api.get.settings();
+    const user = await api.get.user();
 
-    if (!settings) return null;
+    if (!user) return null;
 
     const preferences = await database.preferences.findUnique({
       where: {
-        settingsId: settings.id,
+        userId: user.id,
       },
     });
 

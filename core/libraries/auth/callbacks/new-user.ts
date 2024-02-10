@@ -9,21 +9,29 @@ const newUser = async ({ id, email }: Payload) => {
     const userId = id;
     const username = `${email.split("@")[0]}-${cuid}`;
 
-    const updatedUser = await database.user.update({
+    const updateUser = database.user.update({
       where: { id: userId },
       data: { username },
       select: { id: true },
     });
 
-    const createdSettings = await database.settings.create({
+    const createSettings = database.settings.create({
       data: { userId },
       select: { id: true },
     });
 
-    const createdPreferences = await database.preferences.create({
-      data: { settingsId: createdSettings.id },
+    const createPreferences = database.preferences.create({
+      data: { userId },
       select: { id: true },
     });
+
+    const results = await Promise.all([
+      updateUser,
+      createSettings,
+      createPreferences,
+    ]);
+
+    const [updatedUser, createdSettings, createdPreferences] = results;
 
     return {
       updatedUser,

@@ -4,7 +4,6 @@ import api from ".";
 
 const getSettings = cache(async () => {
   try {
-    console.log("settings");
     const user = await api.get.user();
 
     if (!user) return null;
