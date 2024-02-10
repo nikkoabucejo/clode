@@ -1,7 +1,8 @@
 import auth from "@libraries/auth";
 import database from "@libraries/database";
+import { cache } from "react";
 
-const getUser = async () => {
+const getUser = cache(async () => {
   try {
     const session = await auth();
     const email = session?.user?.email;
@@ -19,6 +20,6 @@ const getUser = async () => {
     console.error(error);
     throw new Error(error.message);
   }
-};
+});
 
 export default getUser;
