@@ -1,23 +1,19 @@
 import guard from "@libraries/guard";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export const GET = async () => {
-  const { response } = await guard({
-    safe: async (session) => {
+export const GET = async (request: NextRequest) => {
+  const { response } = await guard(request.method, {
+    authenticated: async ({ session, context }) => {
       try {
-        return NextResponse.json(session);
+        return NextResponse.json(session, { status: context.status });
       } catch (error: any) {
         console.error(error);
         return NextResponse.json(error.message, { status: 500 });
       }
     },
-    unsafe: (context) => {
-      return NextResponse.json(context, { status: context.status });
-    },
-    error: (context) => {
+    unauthenticated: (context) => {
       return NextResponse.json(context, { status: context.status });
     },
   });
-
   if (response) return response;
 };
