@@ -12,7 +12,12 @@ const getAccounts = async () => {
       where: {
         email: email,
       },
+      select: {
+        id: true,
+      },
     });
+
+    if (!user) return null;
 
     const accounts = await database.account.findMany({
       where: {
@@ -26,11 +31,9 @@ const getAccounts = async () => {
     });
 
     return accounts;
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error(error);
-      throw new Error(error.message);
-    }
+  } catch (error: any) {
+    console.error(error);
+    throw new Error(error.message);
   }
 };
 
