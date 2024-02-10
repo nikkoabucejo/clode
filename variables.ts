@@ -4,6 +4,10 @@ const nextauth = {
   AUTH_SECRET: z.string(),
   AUTH_GITHUB_ID: z.string(),
   AUTH_GITHUB_SECRET: z.string(),
+  AUTH_GOOGLE_ID: z.string(),
+  AUTH_GOOGLE_SECRET: z.string(),
+  AUTH_DISCORD_ID: z.string(),
+  AUTH_DISCORD_SECRET: z.string(),
 };
 
 const variables = z.object({

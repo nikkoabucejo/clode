@@ -9,7 +9,6 @@ const callbacks: NextAuthConfig["callbacks"] = {
           email: user.email,
         },
       });
-      console.log(self);
     }
     return true;
   },

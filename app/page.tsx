@@ -6,10 +6,10 @@ const SignIn = () => {
     <form
       action={async () => {
         "use server";
-        await signIn("github");
+        await signIn();
       }}>
       <p>You are not logged in</p>
-      <button type="submit">Sign in with GitHub</button>
+      <button type="submit">Sign in</button>
     </form>
   );
 };
@@ -30,8 +30,6 @@ const SignOut = ({ children }: { children: Children }) => {
 const Home: Page = async () => {
   const user = await api.get.user();
   const session = await auth();
-
-  console.log({ session });
 
   return (
     <section className="text-white">
