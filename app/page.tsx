@@ -1,5 +1,5 @@
-import api from "@/core/libraries/api";
-import { signIn, signOut } from "@/core/libraries/auth";
+import api from "@libraries/api";
+import auth, { signIn, signOut } from "@libraries/auth";
 
 const SignIn = () => {
   return (
@@ -29,6 +29,9 @@ const SignOut = ({ children }: { children: Children }) => {
 
 const Home: Page = async () => {
   const user = await api.get.user();
+  const session = await auth();
+
+  console.log({ session });
 
   return (
     <section className="text-white">

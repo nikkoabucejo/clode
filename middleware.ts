@@ -1,4 +1,4 @@
-import { auth } from "@/core/libraries/auth";
+import auth from "@libraries/auth";
 
 export default auth((request) => {
   console.log("HELLO");

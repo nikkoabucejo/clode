@@ -1,5 +1,5 @@
+import database from "@libraries/database";
 import { NextAuthConfig } from "next-auth";
-import database from "../database";
 
 const callbacks: NextAuthConfig["callbacks"] = {
   async signIn({ user, account, profile, email, credentials }) {

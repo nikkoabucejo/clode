@@ -1,11 +1,11 @@
 import GitHub from "next-auth/providers/github";
 import NextAuth from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import database from "../database";
 import callbacks from "./callbacks";
 import pages from "./pages";
+import database from "@libraries/database";
 
-export const {
+const {
   handlers: { POST, GET },
   auth,
   signIn,
@@ -17,3 +17,7 @@ export const {
   callbacks,
   pages,
 });
+
+export { POST, GET, signIn, signOut };
+
+export default auth;
