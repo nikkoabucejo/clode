@@ -1,6 +1,6 @@
 import database from "@libraries/database";
 
-const deleteAccount = async (id: string) => {
+const deleteAccount = async (id: ID) => {
   try {
     const accountId = id;
 
