@@ -23,11 +23,6 @@ const getAccounts = async () => {
       where: {
         userId: user?.id,
       },
-      select: {
-        id: true,
-        type: true,
-        provider: true,
-      },
     });
 
     return accounts;

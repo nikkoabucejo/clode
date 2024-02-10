@@ -1,7 +1,9 @@
 import database from "@libraries/database";
 import { createId } from "@paralleldrive/cuid2";
 
-const newUser = async ({ id, email }: { id: ID; email: string }) => {
+type Payload = { id: ID; email: string };
+
+const newUser = async ({ id, email }: Payload) => {
   try {
     const cuid = createId();
     const userId = id;
