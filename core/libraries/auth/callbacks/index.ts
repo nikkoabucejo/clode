@@ -1,15 +1,8 @@
-import database from "@libraries/database";
 import { NextAuthConfig } from "next-auth";
+import newUser from "./new-user";
 
 const callbacks: NextAuthConfig["callbacks"] = {
   async signIn({ user, account, profile, email, credentials }) {
-    if (user?.email) {
-      const self = await database.user.findUnique({
-        where: {
-          email: user.email,
-        },
-      });
-    }
     return true;
   },
   async redirect({ url, baseUrl }) {
@@ -18,7 +11,11 @@ const callbacks: NextAuthConfig["callbacks"] = {
   async session({ session, user, token }) {
     return session;
   },
-  async jwt({ token, user, account, profile }) {
+  async jwt({ token, user, account, profile, isNewUser }) {
+    if (user?.id && user?.email && isNewUser) {
+      await newUser({ id: user.id, email: user.email });
+    }
+
     return token;
   },
 };
