@@ -14,6 +14,9 @@ type Functions<TAuthenticatedResponse, TUnauthenticatedResponse> = {
   unauthenticated: (context: Context) => TUnauthenticatedResponse;
 };
 
+/**
+ * @description Secure the API route for use exclusively by authenticated users.
+ */
 const guard = async <TAuthenticatedResponse, TUnauthenticatedResponse>(
   method: string,
   {

@@ -3,6 +3,9 @@ import { createId } from "@paralleldrive/cuid2";
 
 type Payload = { id: ID; email: string };
 
+/**
+ * @description Execute this only when a user is newly created.
+ */
 const newUser = async ({ id, email }: Payload) => {
   try {
     const cuid = createId();
