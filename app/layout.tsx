@@ -4,6 +4,8 @@ import "@styles/globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Clode",
   description: "Clode - Store your codes",
