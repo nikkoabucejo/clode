@@ -1,4 +1,3 @@
-import auth from "@libraries/auth";
 import database from "@libraries/database";
 import { cache } from "react";
 import api from ".";
