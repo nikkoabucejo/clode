@@ -15,7 +15,7 @@ const providers: NextAuthConfig["providers"] = [
     async sendVerificationRequest({ identifier: email, url }) {
       try {
         await mailer.emails.send({
-          from: process.env.AUTH_EMAIL_FROM!,
+          from: process.env.AUTH_EMAIL_FROM,
           to: email,
           subject: "Clode - Login",
           text: `Magic Link: ${url}`,
