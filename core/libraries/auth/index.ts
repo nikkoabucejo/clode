@@ -17,7 +17,7 @@ const {
   providers,
   callbacks,
   pages,
-  trustHost: true
+  trustHost: true,
 });
 
 export { POST, GET, signIn, signOut };
