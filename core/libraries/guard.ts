@@ -22,7 +22,7 @@ const guard = async <TAuthenticatedResponse, TUnauthenticatedResponse>(
   {
     authenticated,
     unauthenticated,
-  }: Functions<TAuthenticatedResponse, TUnauthenticatedResponse>
+  }: Functions<TAuthenticatedResponse, TUnauthenticatedResponse>,
 ) => {
   const session = await auth();
 

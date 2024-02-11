@@ -161,5 +161,4 @@ const magicLink = ({ url }: { url: string }) => {
   `;
 };
 
-
-export default magicLink
+export default magicLink;
