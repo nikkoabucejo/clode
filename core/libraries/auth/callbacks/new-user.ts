@@ -1,5 +1,5 @@
 import database from "@libraries/database";
-import { createId } from "@paralleldrive/cuid2";
+import generate from "@libraries/generate";
 
 type Payload = { id: ID; email: string };
 
@@ -8,7 +8,7 @@ type Payload = { id: ID; email: string };
  */
 const newUser = async ({ id, email }: Payload) => {
   try {
-    const cuid = createId();
+    const cuid = generate.id("cuid");
     const userId = id;
     const username = `${email.split("@")[0]}-${cuid}`;
 
