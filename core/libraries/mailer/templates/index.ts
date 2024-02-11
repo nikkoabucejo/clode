@@ -1,7 +1,7 @@
-import magicLink from "./magic-link"
+import magicLink from "./magic-link";
 
 const templates = {
-  magicLink: magicLink
-}
+  magicLink: magicLink,
+};
 
-export default templates
+export default templates;
