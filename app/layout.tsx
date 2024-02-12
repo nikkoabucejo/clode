@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@styles/globals.css";
-import NextUIProvider from "@libraries/providers/nextui";
+import Providers from "@libraries/providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +16,7 @@ const Root: Layout = ({ children }) => {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NextUIProvider>{children}</NextUIProvider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
