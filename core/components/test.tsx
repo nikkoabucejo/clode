@@ -1,5 +1,6 @@
 import api from "@libraries/api";
 import { signIn, signOut } from "@libraries/auth";
+import { Button } from "@nextui-org/react";
 
 export const LinkedSignIn = () => {
   return (
@@ -8,7 +9,9 @@ export const LinkedSignIn = () => {
         "use server";
         await signIn();
       }}>
-      <button type="submit">Link account</button>
+      <Button color="secondary" type="submit">
+        Link account
+      </Button>
     </form>
   );
 };
@@ -21,7 +24,9 @@ export const SignIn = () => {
         await signIn();
       }}>
       <p>You are not logged in</p>
-      <button type="submit">Sign in</button>
+      <Button color="primary" type="submit">
+        Sign in
+      </Button>
     </form>
   );
 };
@@ -37,7 +42,9 @@ export const SignOut = async ({ children }: { children: Children }) => {
           await signOut();
         }}>
         <div>{children}</div>
-        <button type="submit">Sign out</button>
+        <Button color="danger" type="submit">
+          Sign out
+        </Button>
       </form>
       <LinkedSignIn />
       <ul>

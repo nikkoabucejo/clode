@@ -7,7 +7,7 @@ const Home: Page = async () => {
   const preferences = await api.get.preferences();
 
   return (
-    <section className="text-white">
+    <section className="h-screen text-white">
       <h1>Home</h1>
       <div>
         {user ? <SignOut>{`Welcome ${user.email}`}</SignOut> : <SignIn />}
