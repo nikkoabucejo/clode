@@ -19,6 +19,7 @@
     "@nextui-org/react": "^2.2.9",
     "@paralleldrive/cuid2": "^2.2.2",
     "@prisma/client": "^5.9.1",
+    "@uiw/react-textarea-code-editor": "^3.0.2",
     "clsx": "^2.1.0",
     "framer-motion": "^11.0.3",
     "next": "14.1.0",
