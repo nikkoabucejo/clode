@@ -7,8 +7,7 @@ const Home: Page = async () => {
   const settings = await api.get.settings();
   const preferences = await api.get.preferences();
   const collections = await api.get.collections();
-
-  console.log(collections);
+  const memberships = await api.get.memberships();
 
   return (
     <section className="p-16">

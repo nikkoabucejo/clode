@@ -2,7 +2,7 @@ import database from "@libraries/database";
 import { cache } from "react";
 import api from ".";
 
-const getCollections = cache(async () => {
+const getCollections = cache(async (teamId?: ID) => {
   try {
     const user = await api.get.user();
 
@@ -10,7 +10,7 @@ const getCollections = cache(async () => {
 
     const collections = await database.collection.findMany({
       where: {
-        userId: user.id,
+        ...(teamId ? { teamId } : { userId: user.id }),
       },
       include: {
         codes: true,
