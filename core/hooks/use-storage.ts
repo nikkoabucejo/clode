@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 
 const useStorage = {
-  useLocalStorage: <TValue>({
+  local: <TValue>({
     key,
     value: _value,
   }: {
