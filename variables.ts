@@ -15,12 +15,24 @@ const nextauth = {
   AUTH_EMAIL_FROM: z.string(),
 };
 
+const postgres = {
+  POSTGRES_URL: z.string(),
+  POSTGRES_PRISMA_URL: z.string(),
+  POSTGRES_URL_NO_SSL: z.string(),
+  POSTGRES_URL_NON_POOLING: z.string(),
+  POSTGRES_USER: z.string(),
+  POSTGRES_HOST: z.string(),
+  POSTGRES_PASSWORD: z.string(),
+  POSTGRES_DATABASE: z.string(),
+};
+
 const variables = z.object({
   ENVIRONMENT: z.enum(["local", "development", "preview", "production"]),
   DOMAIN: z.string(),
   DATABASE_URL: z.string(),
   RESEND_API_KEY: z.string(),
   ...nextauth,
+  ...postgres,
 });
 
 variables.parse(process.env);
