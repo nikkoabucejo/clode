@@ -42,12 +42,12 @@ model User {
   email         String    @unique
   emailVerified DateTime?
   image         String?
+  role          Role      @default(USER)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  accounts Account[]
-
+  accounts    Account[]
   settings    Settings?
   preferences Preferences?
   collections Collection[]
@@ -122,4 +122,9 @@ model Membership {
   userId String
   team   Team   @relation(fields: [teamId], references: [id], onDelete: Cascade)
   teamId String
+}
+
+enum Role {
+  USER
+  ADMINISTRATOR
 }
