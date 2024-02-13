@@ -1,6 +1,6 @@
 import api from "@libraries/api";
-import { SignIn, SignOut } from "../core/components/test";
 import { BellIcon } from "@heroicons/react/16/solid";
+import { SignIn, SignOut } from "@components/test";
 
 const Home: Page = async () => {
   const user = await api.get.user();
