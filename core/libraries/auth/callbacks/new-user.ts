@@ -28,18 +28,35 @@ const newUser = async ({ id, email }: Payload) => {
       select: { id: true },
     });
 
+    const createCollections = [
+      { name: "Favorites", isDefault: true },
+      { name: "My Collection", isDefault: false },
+    ].map(({ name, isDefault }) => {
+      return database.collection.create({
+        data: { userId, name, isDefault },
+        select: { id: true },
+      });
+    });
+
     const results = await Promise.all([
       updateUser,
       createSettings,
       createPreferences,
+      ...createCollections,
     ]);
 
-    const [updatedUser, createdSettings, createdPreferences] = results;
+    const [
+      updatedUser,
+      createdSettings,
+      createdPreferences,
+      ...createdCollections
+    ] = results;
 
     return {
       updatedUser,
       createdSettings,
       createdPreferences,
+      createdCollections,
     };
   } catch (error: any) {
     console.error(error);

@@ -26,14 +26,6 @@ model Account {
   @@unique([provider, providerAccountId])
 }
 
-model Session {
-  id           String   @id @default(uuid())
-  sessionToken String   @unique
-  userId       String
-  expires      DateTime
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
 model VerificationToken {
   identifier String
   token      String   @unique
@@ -54,10 +46,10 @@ model User {
   updatedAt DateTime @updatedAt
 
   accounts Account[]
-  sessions Session[]
 
   settings    Settings?
   preferences Preferences?
+  collections Collection[]
 }
 
 model Settings {
@@ -78,4 +70,29 @@ model Preferences {
 
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String @unique
+}
+
+model Code {
+  id       String @id @default(uuid())
+  language String
+  body     String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+  collectionId String
+}
+
+model Collection {
+  id        String  @id @default(uuid())
+  name      String
+  isDefault Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+  codes  Code[]
 }

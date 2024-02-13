@@ -6,6 +6,9 @@ const Home: Page = async () => {
   const user = await api.get.user();
   const settings = await api.get.settings();
   const preferences = await api.get.preferences();
+  const collections = await api.get.collections();
+
+  console.log(collections);
 
   return (
     <section className="p-16">
