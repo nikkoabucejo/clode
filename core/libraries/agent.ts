@@ -1,13 +1,13 @@
 import crypto from "crypto-js";
 
-const KEY = process.env.CRYPTO_KEY;
+const CRYPTO_KEY = process.env.CRYPTO_KEY;
 
 const agent = {
   encrypt: (data: unknown) => {
-    return crypto.AES.encrypt(JSON.stringify(data), KEY).toString();
+    return crypto.AES.encrypt(JSON.stringify(data), CRYPTO_KEY).toString();
   },
   decrypt: (data: any) => {
-    const bytes = crypto.AES.decrypt(data, KEY);
+    const bytes = crypto.AES.decrypt(data, CRYPTO_KEY);
     return JSON.parse(bytes.toString(crypto.enc.Utf8));
   },
 };
