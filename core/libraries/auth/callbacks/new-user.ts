@@ -28,28 +28,25 @@ const newUser = async ({ id, email }: Payload) => {
       select: { id: true },
     });
 
-    const createCollections = [
-      { name: "Favorites", isDefault: true },
-      { name: "My Collection", isDefault: false },
-    ].map(({ name, isDefault }) => {
-      return database.collection.create({
-        data: { userId, name, isDefault },
-        select: { id: true },
-      });
+    const createCollections = await database.collection.createMany({
+      data: [
+        { userId, name: "Favorites", isDefault: true },
+        { userId, name: "My Collection", isDefault: false },
+      ],
     });
 
     const results = await Promise.all([
       updateUser,
       createSettings,
       createPreferences,
-      ...createCollections,
+      createCollections,
     ]);
 
     const [
       updatedUser,
       createdSettings,
       createdPreferences,
-      ...createdCollections
+      createdCollections,
     ] = results;
 
     return {
