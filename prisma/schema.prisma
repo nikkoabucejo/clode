@@ -77,7 +77,7 @@ model Preferences {
 model Code {
   id       String @id @default(uuid())
   language String
-  source   String
+  source   String @db.Text
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
