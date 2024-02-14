@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import CodeEditor from "@uiw/react-textarea-code-editor";
 import { Card } from "@nextui-org/react";
 
