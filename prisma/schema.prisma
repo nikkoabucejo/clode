@@ -77,7 +77,7 @@ model Preferences {
 model Code {
   id       String @id @default(uuid())
   language String
-  body     String
+  source   String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

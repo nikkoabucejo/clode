@@ -4,12 +4,16 @@ import React, { useState } from "react";
 import CodeEditor from "@uiw/react-textarea-code-editor";
 import { Card } from "@nextui-org/react";
 
-const Code = () => {
-  const [code, setCode] = useState(`function add(a, b) {\n  return a + b;\n}`);
+type Props = {
+  source: string;
+};
+
+const Code = ({ source: _source }: Props) => {
+  const [source, setCode] = useState(_source);
   return (
     <Card className="py-4">
       <CodeEditor
-        value={code}
+        value={source}
         language="jsx"
         placeholder="Please enter React code."
         onChange={(evn) => setCode(evn.target.value)}

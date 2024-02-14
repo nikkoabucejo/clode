@@ -29,7 +29,7 @@ const postgres = {
 const variables = z.object({
   ENVIRONMENT: z.enum(["local", "development", "preview", "production"]),
   DOMAIN: z.string(),
-  DATABASE_URL: z.string(),
+  CRYPTO_KEY: z.string(),
   RESEND_API_KEY: z.string(),
   ...nextauth,
   ...postgres,
