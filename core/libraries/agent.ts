@@ -1,6 +1,6 @@
 import crypto from "crypto-js";
 
-const CRYPTO_KEY = process.env.CRYPTO_KEY;
+const CRYPTO_KEY = process.env.CRYPTO_KEY ?? "CRYPTO_KEY";
 
 const agent = {
   encrypt: (data: unknown) => {
