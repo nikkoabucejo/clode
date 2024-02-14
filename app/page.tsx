@@ -5,10 +5,6 @@ import agent from "@libraries/agent";
 
 const Home: Page = async () => {
   const user = await api.get.user();
-  const settings = await api.get.settings();
-  const preferences = await api.get.preferences();
-  const collections = await api.get.collections();
-  const memberships = await api.get.memberships();
 
   const encrypted = agent.encrypt("function add(a, b) {\n  return a + b;\n}");
   const decrypted = agent.decrypt(encrypted);

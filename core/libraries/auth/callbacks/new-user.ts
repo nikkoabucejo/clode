@@ -55,9 +55,11 @@ const newUser = async ({ id, email }: Payload) => {
       createdPreferences,
       createdCollections,
     };
-  } catch (error: any) {
-    console.error(error);
-    throw new Error(error.message);
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error);
+      throw new Error(error.message);
+    }
   }
 };
 

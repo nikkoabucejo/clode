@@ -15,9 +15,11 @@ const getSettings = cache(async () => {
     });
 
     return settings;
-  } catch (error: any) {
-    console.error(error);
-    throw new Error(error.message);
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error);
+      throw new Error(error.message);
+    }
   }
 });
 
