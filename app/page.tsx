@@ -1,19 +1,23 @@
 import api from "@libraries/api";
-import { BellIcon } from "@heroicons/react/16/solid";
 import { SignIn, SignOut } from "@components/test";
+import Code from "@components/code";
+import agent from "@libraries/agent";
 
 const Home: Page = async () => {
   const user = await api.get.user();
-  const settings = await api.get.settings();
-  const preferences = await api.get.preferences();
+
+  const encrypted = agent.encrypt("function add(a, b) {\n  return a + b;\n}");
+  const decrypted = agent.decrypt(encrypted);
+
+  console.log({ encrypted, decrypted });
 
   return (
-    <section className="h-screen text-white">
+    <section className="p-16">
+      <Code source={decrypted} />
       <h1>Home</h1>
       <div>
         {user ? <SignOut>{`Welcome ${user.email}`}</SignOut> : <SignIn />}
       </div>
-      <BellIcon className="h-5 w-5 text-red-500" />
     </section>
   );
 };

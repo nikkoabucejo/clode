@@ -2,19 +2,22 @@ import database from "@libraries/database";
 import { cache } from "react";
 import api from ".";
 
-const getSettings = cache(async () => {
+const getMemberships = cache(async () => {
   try {
     const user = await api.get.user();
 
     if (!user) return null;
 
-    const settings = await database.settings.findUnique({
+    const memberships = await database.membership.findMany({
       where: {
         userId: user.id,
       },
+      include: {
+        team: true,
+      },
     });
 
-    return settings;
+    return memberships;
   } catch (error) {
     if (error instanceof Error) {
       console.error(error);
@@ -23,4 +26,4 @@ const getSettings = cache(async () => {
   }
 });
 
-export default getSettings;
+export default getMemberships;

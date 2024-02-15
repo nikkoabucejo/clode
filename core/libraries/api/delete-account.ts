@@ -10,9 +10,11 @@ const deleteAccount = async (id: ID) => {
     });
 
     return deletedAccount;
-  } catch (error: any) {
-    console.error(error);
-    throw new Error(error.message);
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error);
+      throw new Error(error.message);
+    }
   }
 };
 

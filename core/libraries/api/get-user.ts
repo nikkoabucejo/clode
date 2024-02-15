@@ -16,9 +16,11 @@ const getUser = cache(async () => {
     });
 
     return user;
-  } catch (error: any) {
-    console.error(error);
-    throw new Error(error.message);
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error);
+      throw new Error(error.message);
+    }
   }
 });
 
