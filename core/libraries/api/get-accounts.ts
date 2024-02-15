@@ -6,8 +6,6 @@ const getAccounts = cache(async () => {
   try {
     const user = await api.get.user();
 
-    if (!user) return null;
-
     const accounts = await database.account.findMany({
       where: {
         userId: user?.id,
@@ -20,6 +18,7 @@ const getAccounts = cache(async () => {
       console.error(error);
       throw new Error(error.message);
     }
+    throw new Error("An unknown error occurred while fetching user data.");
   }
 });
 

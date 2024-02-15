@@ -1,12 +1,11 @@
 import database from "@libraries/database";
 import { cache } from "react";
 import api from ".";
+import Grab from "@libraries/grab";
 
 const getMemberships = cache(async () => {
   try {
     const user = await api.get.user();
-
-    if (!user) return null;
 
     const memberships = await database.membership.findMany({
       where: {
@@ -19,10 +18,7 @@ const getMemberships = cache(async () => {
 
     return memberships;
   } catch (error) {
-    if (error instanceof Error) {
-      console.error(error);
-      throw new Error(error.message);
-    }
+    throw new Error(new Grab(error).error().message);
   }
 });
 

@@ -2,10 +2,8 @@ import database from "@libraries/database";
 
 const deleteAccount = async (id: ID) => {
   try {
-    const accountId = id;
-
     const deletedAccount = await database.account.delete({
-      where: { id: accountId },
+      where: { id },
       select: { id: true },
     });
 
@@ -15,6 +13,7 @@ const deleteAccount = async (id: ID) => {
       console.error(error);
       throw new Error(error.message);
     }
+    throw new Error("An unknown error occurred while fetching user data.");
   }
 };
 

@@ -1,14 +1,13 @@
 import database from "@libraries/database";
 import { cache } from "react";
 import api from ".";
+import Grab from "@libraries/grab";
 
 const getPreferences = cache(async () => {
   try {
     const user = await api.get.user();
 
-    if (!user) return null;
-
-    const preferences = await database.preferences.findUnique({
+    const preferences = await database.preferences.findUniqueOrThrow({
       where: {
         userId: user.id,
       },
@@ -16,10 +15,7 @@ const getPreferences = cache(async () => {
 
     return preferences;
   } catch (error) {
-    if (error instanceof Error) {
-      console.error(error);
-      throw new Error(error.message);
-    }
+    throw new Error(new Grab(error).error().message);
   }
 });
 
