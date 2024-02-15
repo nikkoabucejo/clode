@@ -6,6 +6,7 @@
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended"
   ],
+  "ignorePatterns": ["core/libraries/mailer/templates/*"],
   "rules": {
     "@typescript-eslint/consistent-type-imports": "error",
     "@typescript-eslint/ban-ts-comment": "off",
