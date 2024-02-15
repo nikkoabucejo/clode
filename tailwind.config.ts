@@ -16,6 +16,12 @@ const config: Config = {
         laptop: "1024px",
         desktop: "1280px",
       },
+      borderRadius: {
+        base: "8px",
+      },
+      fontSize: {
+        headliner: "32px",
+      },
     },
   },
   plugins: [nextui()],
