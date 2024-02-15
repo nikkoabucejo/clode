@@ -1,8 +1,8 @@
-import { NextAuthConfig } from "next-auth";
+import { type NextAuthConfig } from "next-auth";
 import newUser from "./new-user";
 
 const callbacks: NextAuthConfig["callbacks"] = {
-  async signIn({}) {
+  async signIn() {
     return true;
   },
   async redirect({ baseUrl }) {
