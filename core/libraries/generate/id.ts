@@ -1,6 +1,6 @@
 import { createId } from "@paralleldrive/cuid2";
 
-const generateId = (type: "cuid"): ID => {
+const id = (type: "cuid"): ID => {
   switch (type) {
     case "cuid": {
       const cuid = createId();
@@ -11,4 +11,4 @@ const generateId = (type: "cuid"): ID => {
   }
 };
 
-export default generateId;
+export default id;
