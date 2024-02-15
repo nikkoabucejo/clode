@@ -17,6 +17,7 @@
     "environment:push": "npx dotenv-vault@latest push && npx dotenv-vault@latest push production",
     "environment:push:development": "npx dotenv-vault@latest push",
     "environment:push:production": "npx dotenv-vault@latest push production",
+    "environment:pull": "npx dotenv-vault@latest pull && npx dotenv-vault@latest pull production",
     "environment:pull:development": "npx dotenv-vault@latest pull",
     "environment:pull:production": "npx dotenv-vault@latest pull production"
   },
