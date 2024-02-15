@@ -1,6 +1,7 @@
 import database from "@libraries/database";
 import { cache } from "react";
 import api from ".";
+import Grab from "@libraries/grab";
 
 const getAccounts = cache(async () => {
   try {
@@ -14,11 +15,7 @@ const getAccounts = cache(async () => {
 
     return accounts;
   } catch (error) {
-    if (error instanceof Error) {
-      console.error(error);
-      throw new Error(error.message);
-    }
-    throw new Error("An unknown error occurred while fetching user data.");
+    throw new Error(new Grab(error).error().message);
   }
 });
 

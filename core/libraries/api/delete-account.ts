@@ -1,4 +1,5 @@
 import database from "@libraries/database";
+import Grab from "@libraries/grab";
 
 const deleteAccount = async (id: ID) => {
   try {
@@ -9,11 +10,7 @@ const deleteAccount = async (id: ID) => {
 
     return deletedAccount;
   } catch (error) {
-    if (error instanceof Error) {
-      console.error(error);
-      throw new Error(error.message);
-    }
-    throw new Error("An unknown error occurred while fetching user data.");
+    throw new Error(new Grab(error).error().message);
   }
 };
 
