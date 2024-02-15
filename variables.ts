@@ -37,7 +37,9 @@ const variables = z.object({
 
 variables.parse(process.env);
 
+// eslint-disable-next-line no-unused-vars
 declare global {
+  // eslint-disable-next-line no-unused-vars
   namespace NodeJS {
     interface ProcessEnv extends z.infer<typeof variables> {}
   }
