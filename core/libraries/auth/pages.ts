@@ -1,4 +1,4 @@
-import { NextAuthConfig } from "next-auth";
+import { type NextAuthConfig } from "next-auth";
 
 const pages: NextAuthConfig["pages"] = {
   // signIn: "/auth/signin",

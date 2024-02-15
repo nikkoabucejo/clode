@@ -1,5 +1,5 @@
 import mailer, { templates } from "@libraries/mailer";
-import { NextAuthConfig } from "next-auth";
+import { type NextAuthConfig } from "next-auth";
 import discord from "next-auth/providers/discord";
 import github from "next-auth/providers/github";
 import google from "next-auth/providers/google";
@@ -21,9 +21,11 @@ const providers: NextAuthConfig["providers"] = [
           text: `Magic Link: ${url}`,
           html: templates.magicLink({ url }),
         });
-      } catch (error: any) {
-        console.error(error);
-        throw new Error(error.message);
+      } catch (error) {
+        if (error instanceof Error) {
+          console.error(error);
+          throw new Error(error.message);
+        }
       }
     },
   },

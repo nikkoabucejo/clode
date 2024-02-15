@@ -1,8 +1,8 @@
 type Children = React.ReactNode;
 
-type Page<TProps = {}> = React.FC<Readonly<TProps>>;
+type Page<TProps = unknown> = React.FC<Readonly<TProps>>;
 
-type Layout<TProps = {}> = React.FC<
+type Layout<TProps = unknown> = React.FC<
   Readonly<
     TProps & {
       children: Children;

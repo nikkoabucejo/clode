@@ -1,7 +1,7 @@
-import generateId from "./id";
+import id from "./id";
 
 const generate = {
-  id: generateId,
+  id,
 };
 
 export default generate;
