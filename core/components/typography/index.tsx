@@ -1,7 +1,7 @@
 "use client";
 
 import cn from "@utilities/cn";
-import React, { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 type HeadingSize = "body" | "title" | "headliner" | "subtitle";
 
