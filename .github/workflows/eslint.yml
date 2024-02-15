@@ -28,9 +28,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install ESLint
+      - name: Run Lint
         run: |
-          npm lint
+          npm run lint
 
       - name: Install ESLint
         run: |
