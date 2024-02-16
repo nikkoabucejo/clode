@@ -2,7 +2,7 @@ import cn from "@utilities/cn";
 import React from "react";
 
 type IconProps = {
-  Svg: React.ForwardRefExoticComponent<
+  Element: React.ForwardRefExoticComponent<
     Omit<React.SVGProps<SVGSVGElement>, "ref"> & {
       title?: string | undefined;
       titleId?: string | undefined;
@@ -11,10 +11,10 @@ type IconProps = {
   className?: string;
 };
 
-const Icon = ({ Svg, className = "" }: IconProps) => {
+const Icon = ({ Element, className = "" }: IconProps) => {
   const style = cn("w-6 h-6", className);
 
-  return <Svg className={style} />;
+  return <Element className={style} />;
 };
 
 export default Icon;

@@ -1,8 +1,7 @@
 import { Chip } from "@nextui-org/react";
-import type { ReactNode } from "react";
 
 type Props = {
-  children: ReactNode;
+  children: Children;
 };
 
 const Language = ({ children }: Props) => {

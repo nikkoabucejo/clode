@@ -1,17 +1,13 @@
-"use client";
-
 import cn from "@utilities/cn";
-import type { ReactNode } from "react";
-
-type HeadingSize = "body" | "title" | "headliner" | "subtitle";
+type HeadingSize = "base" | "title" | "headliner" | "subtitle";
 
 type Props = {
   heading?: HeadingSize;
-  children: ReactNode;
+  children: Children;
   className?: string;
 };
 
-const Typography = ({ heading = "body", children, className = "" }: Props) => {
+const Typography = ({ heading = "base", children, className = "" }: Props) => {
   let Tag: keyof JSX.IntrinsicElements = "p";
   let fontSize = "text-base";
 
