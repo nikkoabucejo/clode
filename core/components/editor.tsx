@@ -3,20 +3,21 @@
 import { useState } from "react";
 import CodeEditor from "@uiw/react-textarea-code-editor";
 import { Card } from "@nextui-org/react";
+import { Code } from "@prisma/client";
 
 type Props = {
-  source: string;
+  code: Code;
 };
 
-const Code = ({ source: _source }: Props) => {
-  const [source, setCode] = useState(_source);
+const Editor = ({ code }: Props) => {
+  const [source, setSource] = useState(code.source);
   return (
     <Card className="py-4">
       <CodeEditor
         value={source}
         language="jsx"
         placeholder="Please enter React code."
-        onChange={(evn) => setCode(evn.target.value)}
+        onChange={(evn) => setSource(evn.target.value)}
         padding={15}
         style={{
           backgroundColor: "#f5f5f5",
@@ -28,4 +29,4 @@ const Code = ({ source: _source }: Props) => {
   );
 };
 
-export default Code;
+export default Editor;
