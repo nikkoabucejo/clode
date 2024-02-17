@@ -7,10 +7,10 @@ const getCollections = cache(async (teamId?: ID) => {
   try {
     const user = await api.get.user();
 
+    const condition = teamId ? { teamId } : { userId: user.id };
+
     const collections = await database.collection.findMany({
-      where: {
-        ...(teamId ? { teamId } : { userId: user.id }),
-      },
+      where: { ...condition },
       include: {
         codes: {
           select: {
