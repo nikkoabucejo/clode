@@ -1,5 +1,6 @@
 import deleteAccount from "./delete-account";
 import getAccounts from "./get-accounts";
+import getCode from "./get-code";
 import getCollections from "./get-collections";
 import getMemberships from "./get-memberships";
 import getPreferences from "./get-preferences";
@@ -17,6 +18,7 @@ const api = {
     preferences: getPreferences,
     collections: getCollections,
     memberships: getMemberships,
+    code: getCode,
   },
   delete: {
     account: deleteAccount,

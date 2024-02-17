@@ -1,5 +1,7 @@
+import agent from "@libraries/agent";
 import database from "@libraries/database";
 import generate from "@libraries/generate";
+import Grab from "@libraries/grab";
 
 type Payload = { id: ID; email: string };
 
@@ -28,38 +30,52 @@ const newUser = async ({ id, email }: Payload) => {
       select: { id: true },
     });
 
-    const createCollections = await database.collection.createMany({
-      data: [
-        { userId, name: "Favorites", isDefault: true },
-        { userId, name: "My Collection", isDefault: false },
-      ],
+    const createCollection_Favorites = database.collection.create({
+      data: { userId, name: "Favorites", isDefault: false },
+      select: { id: true },
+    });
+
+    const createCollection_MyCollection = database.collection.create({
+      data: {
+        userId,
+        name: "My Collection",
+        isDefault: false,
+        codes: {
+          create: {
+            title: "Add Function",
+            description: "Add two numbers together.",
+            language: "javascript",
+            source: agent.encrypt("function add(a, b) {\n  return a + b;\n}"),
+          },
+        },
+      },
     });
 
     const results = await Promise.all([
       updateUser,
       createSettings,
       createPreferences,
-      createCollections,
+      createCollection_Favorites,
+      createCollection_MyCollection,
     ]);
 
     const [
       updatedUser,
       createdSettings,
       createdPreferences,
-      createdCollections,
+      createdCollection_Favorites,
+      createdCollection_MyCollection,
     ] = results;
 
     return {
       updatedUser,
       createdSettings,
       createdPreferences,
-      createdCollections,
+      createdCollection_Favorites,
+      createdCollection_MyCollection,
     };
   } catch (error) {
-    if (error instanceof Error) {
-      console.error(error);
-      throw new Error(error.message);
-    }
+    throw new Error(new Grab(error).error().message);
   }
 };
 

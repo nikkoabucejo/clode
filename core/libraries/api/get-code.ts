@@ -1,3 +1,4 @@
+import agent from "@libraries/agent";
 import database from "@libraries/database";
 import Grab from "@libraries/grab";
 import { cache } from "react";
@@ -7,6 +8,8 @@ const getCode = cache(async (id: ID) => {
     const code = await database.code.findUniqueOrThrow({
       where: { id },
     });
+
+    code.source = agent.decrypt(code.source);
 
     return code;
   } catch (error) {
