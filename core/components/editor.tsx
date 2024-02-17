@@ -4,7 +4,6 @@ import { useState } from "react";
 import CodeEditor from "@uiw/react-textarea-code-editor";
 import { Card } from "@nextui-org/react";
 import { Code } from "@prisma/client";
-import agent from "@libraries/agent";
 
 type Props = {
   code: Code;
@@ -12,7 +11,7 @@ type Props = {
 
 const Editor = ({ code }: Props) => {
   const [source, setSource] = useState(code.source);
-  console.log(code);
+
   return (
     <Card className="py-4">
       <CodeEditor
