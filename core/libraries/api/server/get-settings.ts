@@ -1,22 +1,22 @@
 import database from "@libraries/database";
 import { cache } from "react";
-import api from ".";
+import api from "@libraries/api";
 import Grab from "@libraries/grab";
 
-const getPreferences = cache(async () => {
+const getSettings = cache(async () => {
   try {
-    const user = await api.get.user();
+    const user = await api.server.get.user();
 
-    const preferences = await database.preferences.findUniqueOrThrow({
+    const settings = await database.settings.findUniqueOrThrow({
       where: {
         userId: user.id,
       },
     });
 
-    return preferences;
+    return settings;
   } catch (error) {
     throw new Error(new Grab(error).error().message);
   }
 });
 
-export default getPreferences;
+export default getSettings;

@@ -1,15 +1,17 @@
 import api from "@libraries/api";
 import guard from "@libraries/guard";
-import { type Prisma } from "@prisma/client";
 import { type NextRequest, NextResponse } from "next/server";
 
-export const POST = async (request: NextRequest) => {
+export const GET = async (
+  request: NextRequest,
+  { params }: { params: { codeId: string } },
+) => {
   return await guard(request.method, {
     authenticated: async ({ context }) => {
       try {
-        const body: Prisma.CodeCreateInput = await request.json();
-        const createdCode = await api.server.create.code(body);
-        return NextResponse.json(createdCode, { status: context.status });
+        const { codeId } = params;
+        const code = await api.server.get.code(codeId);
+        return NextResponse.json(code, { status: context.status });
       } catch (error) {
         if (error instanceof Error) {
           console.error(error);

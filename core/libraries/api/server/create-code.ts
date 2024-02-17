@@ -4,12 +4,12 @@ import { type Prisma } from "@prisma/client";
 
 const createCode = async (data: Prisma.CodeCreateInput) => {
   try {
-    const deletedAccount = await database.code.create({
+    const createdCode = await database.code.create({
       data,
       select: { id: true },
     });
 
-    return deletedAccount;
+    return createdCode;
   } catch (error) {
     throw new Error(new Grab(error).error().message);
   }

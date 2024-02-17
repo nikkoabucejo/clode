@@ -1,11 +1,11 @@
 import database from "@libraries/database";
 import { cache } from "react";
-import api from ".";
 import Grab from "@libraries/grab";
+import api from "@libraries/api";
 
 const getAccounts = cache(async () => {
   try {
-    const user = await api.get.user();
+    const user = await api.server.get.user();
 
     const accounts = await database.account.findMany({
       where: {

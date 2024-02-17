@@ -10,9 +10,9 @@ const Home: Page = async () => {
     return <SignIn />;
   }
 
-  const user = await api.get.user();
-  const collections = await api.get.collections();
-  const code = await api.get.code(
+  const user = await api.server.get.user();
+  const collections = await api.server.get.collections();
+  const code = await api.server.get.code(
     collections.find((collection) => collection.name === "My Collection")!
       .codes[0].id,
   );

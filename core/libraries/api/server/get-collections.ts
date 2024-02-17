@@ -1,11 +1,11 @@
 import database from "@libraries/database";
 import { cache } from "react";
-import api from ".";
+import api from "@libraries/api";
 import Grab from "@libraries/grab";
 
 const getCollections = cache(async (teamId?: ID) => {
   try {
-    const user = await api.get.user();
+    const user = await api.server.get.user();
 
     const condition = teamId ? { teamId } : { userId: user.id };
 
