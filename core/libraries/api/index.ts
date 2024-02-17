@@ -1,3 +1,4 @@
+import createCode from "./create-code";
 import deleteAccount from "./delete-account";
 import getAccounts from "./get-accounts";
 import getCode from "./get-code";
@@ -18,7 +19,11 @@ const api = {
     preferences: getPreferences,
     collections: getCollections,
     memberships: getMemberships,
+
     code: getCode,
+  },
+  create: {
+    code: createCode,
   },
   delete: {
     account: deleteAccount,

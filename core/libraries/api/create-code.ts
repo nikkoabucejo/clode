@@ -1,10 +1,11 @@
 import database from "@libraries/database";
 import Grab from "@libraries/grab";
+import { type Prisma } from "@prisma/client";
 
-const deleteAccount = async (id: ID) => {
+const createCode = async (data: Prisma.CodeCreateInput) => {
   try {
-    const deletedAccount = await database.account.delete({
-      where: { id },
+    const deletedAccount = await database.code.create({
+      data,
       select: { id: true },
     });
 
@@ -14,4 +15,4 @@ const deleteAccount = async (id: ID) => {
   }
 };
 
-export default deleteAccount;
+export default createCode;
