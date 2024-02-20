@@ -10,24 +10,8 @@ import {
 import { PlusIcon, ChevronUpDownIcon } from "@heroicons/react/24/solid";
 import Icon from "@components/icon";
 import Typography from "@components/typography";
-import { Membership, Team as TTeam } from "@prisma/client";
-import { useRouter } from "next/navigation";
-import useStorage from "../../hooks/use-storage";
 
-type Props = {
-  teams: Membership &
-    {
-      team: TTeam;
-    }[];
-};
-
-const Team = ({ teams }: Props) => {
-  let initialTeam = teams[0].team.name;
-
-  const [team, setTeam] = useStorage.local({ key: "team", value: initialTeam });
-
-  const router = useRouter();
-
+const Space = () => {
   return (
     <Dropdown classNames={{ content: "glass border" }}>
       <DropdownTrigger>
@@ -35,9 +19,9 @@ const Team = ({ teams }: Props) => {
           <div className="h-8 w-10 rounded-base bg-gray-300" />
           <div className="flex w-full items-center">
             <div>
-              <Typography>{team}</Typography>
+              <Typography>Sample</Typography>
               <Typography heading="subtitle" className="text-gray-400">
-                Team
+                Space
               </Typography>
             </div>
             <div className="ml-auto">
@@ -60,16 +44,7 @@ const Team = ({ teams }: Props) => {
           dividerProps={{
             className: "bg-white/30",
           }}>
-          {teams.map(({ team }) => (
-            <DropdownItem
-              key={team.id}
-              onClick={() => {
-                setTeam(team.name);
-                router.push(`/teams/${team.id}?name=${team.name}`);
-              }}>
-              {team.name}
-            </DropdownItem>
-          ))}
+          <DropdownItem>Space 1</DropdownItem>
         </DropdownSection>
 
         <DropdownItem
@@ -82,4 +57,4 @@ const Team = ({ teams }: Props) => {
   );
 };
 
-export default Team;
+export default Space;
