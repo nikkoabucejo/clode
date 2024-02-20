@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@styles/globals.css";
 import Providers from "../core/components/providers";
+import Sidebar from "@components/sidebar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,8 +16,17 @@ export const metadata: Metadata = {
 const Root: Layout = ({ children }) => {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <Providers>{children}</Providers>
+      <body
+        className={`${inter.className} grid min-h-screen grid-cols-[auto,1fr] gap-4 bg-black text-white`}>
+        <aside>
+          <Sidebar />
+        </aside>
+        <div>
+          <nav className="border py-3">navbar</nav>
+          <main>
+            <Providers>{children}</Providers>
+          </main>
+        </div>
       </body>
     </html>
   );
