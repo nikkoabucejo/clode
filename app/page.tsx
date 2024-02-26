@@ -1,7 +1,6 @@
 import api from "@libraries/api";
 import { SignIn, SignOut } from "@components/test";
 import auth from "@libraries/auth";
-import Editor from "@components/editor";
 
 const Home: Page = async () => {
   const session = await auth();
@@ -11,18 +10,16 @@ const Home: Page = async () => {
   }
 
   const user = await api.server.get.user();
-  const collections = await api.server.get.collections();
-  const code = await api.server.get.code(
-    collections.find((collection) => collection.name === "My Collection")!
-      .codes[0].id,
-  );
+  const spaces = await api.server.get.spaces();
+  const collections = await api.server.get.collections(spaces[0].id);
+
+  console.log(collections);
 
   return (
     <section className="p-16">
       <h1>Home</h1>
       <div>
         <SignOut>{`Welcome ${user.email}`}</SignOut>
-        <Editor code={code} />
       </div>
     </section>
   );

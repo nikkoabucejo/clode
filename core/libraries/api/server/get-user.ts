@@ -1,6 +1,6 @@
 import auth from "@libraries/auth";
 import database from "@libraries/database";
-import Grab from "@libraries/grab";
+import { redirect } from "next/navigation";
 import { cache } from "react";
 
 const getUser = cache(async () => {
@@ -18,7 +18,7 @@ const getUser = cache(async () => {
 
     return user;
   } catch (error) {
-    throw new Error(new Grab(error).error().message);
+    redirect(`${process.env.ORIGIN_URL}/api/auth/signout`);
   }
 });
 

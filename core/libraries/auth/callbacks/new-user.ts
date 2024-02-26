@@ -30,49 +30,36 @@ const newUser = async ({ id, email }: Payload) => {
       select: { id: true },
     });
 
-    const createCollection_Favorites = database.collection.create({
-      data: { userId, name: "Favorites", isDefault: false },
-      select: { id: true },
-    });
-
-    const createCollection_MyCollection = database.collection.create({
+    const createSpace = database.space.create({
       data: {
-        userId,
-        name: "My Collection",
-        isDefault: false,
-        codes: {
-          create: {
-            title: "Add Function",
-            description: "Add two numbers together.",
-            language: "javascript",
-            source: agent.encrypt("function add(a, b) {\n  return a + b;\n}"),
+        name: "My Space",
+        memberships: {
+          create: [{ userId }],
+        },
+        collections: {
+          createMany: {
+            data: [{ name: "My Collection" }],
           },
         },
       },
+      select: { id: true },
     });
 
     const results = await Promise.all([
       updateUser,
       createSettings,
       createPreferences,
-      createCollection_Favorites,
-      createCollection_MyCollection,
+      createSpace,
     ]);
 
-    const [
-      updatedUser,
-      createdSettings,
-      createdPreferences,
-      createdCollection_Favorites,
-      createdCollection_MyCollection,
-    ] = results;
+    const [updatedUser, createdSettings, createdPreferences, createdSpace] =
+      results;
 
     return {
       updatedUser,
       createdSettings,
       createdPreferences,
-      createdCollection_Favorites,
-      createdCollection_MyCollection,
+      createdSpace,
     };
   } catch (error) {
     throw new Error(new Grab(error).error().message);

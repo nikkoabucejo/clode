@@ -3,7 +3,7 @@
 import { useState } from "react";
 import CodeEditor from "@uiw/react-textarea-code-editor";
 import { Card } from "@nextui-org/react";
-import { Code } from "@prisma/client";
+import { type Code } from "@prisma/client";
 
 type Props = {
   code: Code;

@@ -3,9 +3,9 @@ import deleteAccount from "./delete-account";
 import getAccounts from "./get-accounts";
 import getCode from "./get-code";
 import getCollections from "./get-collections";
-import getMemberships from "./get-memberships";
 import getPreferences from "./get-preferences";
 import getSettings from "./get-settings";
+import getSpaces from "./get-spaces";
 import getUser from "./get-user";
 
 const server = {
@@ -15,7 +15,7 @@ const server = {
     settings: getSettings,
     preferences: getPreferences,
     collections: getCollections,
-    memberships: getMemberships,
+    spaces: getSpaces,
     code: getCode,
   },
   create: {

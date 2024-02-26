@@ -3,7 +3,7 @@ import { cache } from "react";
 import api from "@libraries/api";
 import Grab from "@libraries/grab";
 
-const getMemberships = cache(async () => {
+const getSpaces = cache(async () => {
   try {
     const user = await api.server.get.user();
 
@@ -12,14 +12,16 @@ const getMemberships = cache(async () => {
         userId: user.id,
       },
       include: {
-        team: true,
+        space: true,
       },
     });
 
-    return memberships;
+    const spaces = memberships.map((membership) => membership.space);
+
+    return spaces;
   } catch (error) {
     throw new Error(new Grab(error).error().message);
   }
 });
 
-export default getMemberships;
+export default getSpaces;
