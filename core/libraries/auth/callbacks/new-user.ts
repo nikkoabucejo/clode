@@ -1,4 +1,3 @@
-import agent from "@libraries/agent";
 import database from "@libraries/database";
 import generate from "@libraries/generate";
 import Grab from "@libraries/grab";

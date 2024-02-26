@@ -1,12 +1,9 @@
 import database from "@libraries/database";
 import { cache } from "react";
-import api from "@libraries/api";
 import Grab from "@libraries/grab";
 
 const getCollections = cache(async (spaceId: ID) => {
   try {
-    const user = await api.server.get.user();
-
     const collections = await database.collection.findMany({
       where: { spaceId },
       include: {
