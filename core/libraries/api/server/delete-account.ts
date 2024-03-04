@@ -1,20 +1,16 @@
 import database from "@libraries/database";
+import Grab from "@libraries/grab";
 
 const deleteAccount = async (id: ID) => {
   try {
-    const accountId = id;
-
     const deletedAccount = await database.account.delete({
-      where: { id: accountId },
+      where: { id },
       select: { id: true },
     });
 
     return deletedAccount;
   } catch (error) {
-    if (error instanceof Error) {
-      console.error(error);
-      throw new Error(error.message);
-    }
+    throw new Error(new Grab(error).error().message);
   }
 };
 

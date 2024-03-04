@@ -28,6 +28,7 @@ const postgres = {
 
 const variables = z.object({
   ENVIRONMENT: z.enum(["local", "development", "preview", "production"]),
+  ORIGIN_URL: z.string(),
   DOMAIN: z.string(),
   CRYPTO_KEY: z.string(),
   RESEND_API_KEY: z.string(),

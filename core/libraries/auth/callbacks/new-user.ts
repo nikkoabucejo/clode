@@ -1,5 +1,6 @@
 import database from "@libraries/database";
 import generate from "@libraries/generate";
+import Grab from "@libraries/grab";
 
 type Payload = { id: ID; email: string };
 
@@ -28,38 +29,39 @@ const newUser = async ({ id, email }: Payload) => {
       select: { id: true },
     });
 
-    const createCollections = await database.collection.createMany({
-      data: [
-        { userId, name: "Favorites", isDefault: true },
-        { userId, name: "My Collection", isDefault: false },
-      ],
+    const createSpace = database.space.create({
+      data: {
+        name: "My Space",
+        memberships: {
+          create: [{ userId }],
+        },
+        collections: {
+          createMany: {
+            data: [{ name: "My Collection" }],
+          },
+        },
+      },
+      select: { id: true },
     });
 
     const results = await Promise.all([
       updateUser,
       createSettings,
       createPreferences,
-      createCollections,
+      createSpace,
     ]);
 
-    const [
-      updatedUser,
-      createdSettings,
-      createdPreferences,
-      createdCollections,
-    ] = results;
+    const [updatedUser, createdSettings, createdPreferences, createdSpace] =
+      results;
 
     return {
       updatedUser,
       createdSettings,
       createdPreferences,
-      createdCollections,
+      createdSpace,
     };
   } catch (error) {
-    if (error instanceof Error) {
-      console.error(error);
-      throw new Error(error.message);
-    }
+    throw new Error(new Grab(error).error().message);
   }
 };
 

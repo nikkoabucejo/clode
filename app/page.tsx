@@ -1,22 +1,25 @@
 import api from "@libraries/api";
 import { SignIn, SignOut } from "@components/test";
-import Code from "@components/code";
-import agent from "@libraries/agent";
+import auth from "@libraries/auth";
 
 const Home: Page = async () => {
-  const user = await api.get.user();
+  const session = await auth();
 
-  const encrypted = agent.encrypt("function add(a, b) {\n  return a + b;\n}");
-  const decrypted = agent.decrypt(encrypted);
+  if (!session) {
+    return <SignIn />;
+  }
 
-  console.log({ encrypted, decrypted });
+  const user = await api.server.get.user();
+  const spaces = await api.server.get.spaces();
+  const collections = await api.server.get.collections(spaces[0].id);
+
+  console.log(collections);
 
   return (
     <section className="p-16">
-      <Code source={decrypted} />
       <h1>Home</h1>
       <div>
-        {user ? <SignOut>{`Welcome ${user.email}`}</SignOut> : <SignIn />}
+        <SignOut>{`Welcome ${user.email}`}</SignOut>
       </div>
     </section>
   );

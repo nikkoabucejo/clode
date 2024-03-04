@@ -1,4 +1,4 @@
-import api from "@libraries/api";
+import api from "@libraries/api/server";
 import { signIn, signOut } from "@libraries/auth";
 import { Button } from "@nextui-org/react";
 

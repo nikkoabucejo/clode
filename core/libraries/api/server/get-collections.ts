@@ -1,19 +1,19 @@
 import database from "@libraries/database";
 import { cache } from "react";
-import api from ".";
+import Grab from "@libraries/grab";
 
-const getCollections = cache(async (teamId?: ID) => {
+const getCollections = cache(async (spaceId: ID) => {
   try {
-    const user = await api.get.user();
-
-    if (!user) return null;
-
     const collections = await database.collection.findMany({
-      where: {
-        ...(teamId ? { teamId } : { userId: user.id }),
-      },
+      where: { spaceId },
       include: {
-        codes: true,
+        codes: {
+          select: {
+            id: true,
+            title: true,
+            language: true,
+          },
+        },
         _count: {
           select: {
             codes: true,
@@ -24,10 +24,7 @@ const getCollections = cache(async (teamId?: ID) => {
 
     return collections;
   } catch (error) {
-    if (error instanceof Error) {
-      console.error(error);
-      throw new Error(error.message);
-    }
+    throw new Error(new Grab(error).error().message);
   }
 });
 
