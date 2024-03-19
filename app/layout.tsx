@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@styles/globals.css";
-import Providers from "../core/components/providers";
-import Sidebar from "@components/sidebar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,13 +16,7 @@ const Root: Layout = ({ children }) => {
     <html lang="en">
       <body
         className={`${inter.className} grid min-h-screen grid-cols-[auto,1fr] gap-4 bg-black text-white`}>
-        <Sidebar />
-        <div>
-          <nav className="border py-3">navbar</nav>
-          <main>
-            <Providers>{children}</Providers>
-          </main>
-        </div>
+        <main>{children}</main>
       </body>
     </html>
   );
