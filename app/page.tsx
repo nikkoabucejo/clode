@@ -10,10 +10,6 @@ const Home: Page = async () => {
   }
 
   const user = await api.server.get.user();
-  const spaces = await api.server.get.spaces();
-  const collections = await api.server.get.collections(spaces[0].id);
-
-  console.log(collections);
 
   return (
     <section className="p-16">

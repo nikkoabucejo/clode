@@ -9,7 +9,6 @@ import {
 } from "@nextui-org/react";
 import { PlusIcon, ChevronUpDownIcon } from "@heroicons/react/24/solid";
 import Icon from "@components/icon";
-import Typography from "@components/typography";
 
 const Space = () => {
   return (
@@ -19,10 +18,10 @@ const Space = () => {
           <div className="h-8 w-10 rounded-base bg-gray-300" />
           <div className="flex w-full items-center">
             <div>
-              <Typography>Sample</Typography>
-              <Typography heading="subtitle" className="text-gray-400">
+              <span>Sample</span>
+              <span className="text-gray-400">
                 Space
-              </Typography>
+              </span>
             </div>
             <div className="ml-auto">
               <Icon Element={ChevronUpDownIcon} />

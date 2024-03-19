@@ -4,8 +4,8 @@ import React from "react";
 type IconProps = {
   Element: React.ForwardRefExoticComponent<
     Omit<React.SVGProps<SVGSVGElement>, "ref"> & {
-      title?: string | undefined;
-      titleId?: string | undefined;
+      title?: string;
+      titleId?: string;
     } & React.RefAttributes<SVGSVGElement>
   >;
   className?: string;
