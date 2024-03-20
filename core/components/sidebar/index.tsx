@@ -1,13 +1,19 @@
-import Space from "@components/space";
 import type { User as TUser } from "@prisma/client";
+
+import Space from "@components/space";
 import React from "react";
 import User from "@components/user";
+import Snippets from "@components/snippets";
 
 const Sidebar = async () => {
   return (
     <aside className="glass grid h-full w-full max-w-[250px]  grid-rows-[auto,1fr,auto]  gap-6 border-r px-8 py-6">
       <Space />
-      <div>files</div>
+      <section>
+        <Snippets title="Favorites" />
+        <Snippets title="My Collection" />
+        <Snippets title="Files" hasFolderIcon={false} />
+      </section>
       <User user={user} />
     </aside>
   );
