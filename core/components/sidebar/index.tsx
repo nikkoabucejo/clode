@@ -8,7 +8,7 @@ import Snippet from "@components/snippets/snippet";
 
 const Sidebar = async () => {
   return (
-    <aside className="glass grid h-full w-full max-w-[250px]  grid-rows-[auto,1fr,auto]  gap-6 border-r px-8 py-6">
+    <aside className="glass grid h-full w-[280px]  grid-rows-[auto,1fr,auto]  gap-6 border-r px-8 py-6">
       <Space />
       <section>
         <Snippets title="Favorites">
