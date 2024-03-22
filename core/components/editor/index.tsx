@@ -18,10 +18,10 @@ const Editor = ({ code }: Props) => {
   return (
     <Card className="glass space-y-2 p-4">
       <button
-        className="ml-auto flex cursor-pointer items-center gap-1"
+        className="ml-auto flex cursor-pointer items-center gap-1 text-gray-400"
         onClick={() => handleCopyTextToClipboard(source, "Code Copied.")}>
-        <Icon Element={ClipboardIcon} className="text-white" />
-        <span className="text-sm text-white">Copy</span>
+        <Icon Element={ClipboardIcon} />
+        <span className="text-sm">Copy</span>
       </button>
       <CodeEditor
         value={source}
