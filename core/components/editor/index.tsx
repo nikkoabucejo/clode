@@ -18,7 +18,7 @@ const Editor = ({ code }: Props) => {
   return (
     <Card className="glass p-4">
       <button
-        className="ml-auto flex items-center gap-1"
+        className="ml-auto flex cursor-pointer items-center gap-1"
         onClick={() => handleCopyTextToClipboard(source, "Code Copied.")}>
         <Icon Element={ClipboardIcon} className="text-white" />
         <span className="text-sm text-white">Copy</span>
@@ -29,7 +29,7 @@ const Editor = ({ code }: Props) => {
         placeholder="Please enter React code."
         onChange={(evn) => setSource(evn.target.value)}
         padding={15}
-        className="placeholder:text-white"
+        className="-mt-2 placeholder:text-white"
         style={{
           backgroundColor: "transparent",
           color: "white",
