@@ -1,12 +1,13 @@
 import "@styles/globals.css";
 import Providers from "@components/providers";
+import Navbar from "./_components/navbar";
 
 export const dynamic = "force-dynamic";
 
 const SnippetLayout: Layout = ({ children }) => {
   return (
-    <div>
-      <nav className="border py-3">navbar</nav>
+    <div className="space-y-4">
+      <Navbar />
       <main>
         <Providers>{children}</Providers>
       </main>
