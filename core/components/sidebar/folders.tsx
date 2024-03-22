@@ -6,7 +6,7 @@ import { useParams } from "next/navigation";
 import React from "react";
 
 const Folders = () => {
-  const { spaceName } = useParams();
+  const { spaceName, snippetId } = useParams();
 
   return (
     <div>
@@ -17,6 +17,7 @@ const Folders = () => {
               key={id}
               fileName={name}
               href={`/portal/spaces/${spaceName}/favorites/snippets/${id}`}
+              isActive={snippetId === id}
             />
           ))}
         </Folder>
@@ -29,6 +30,7 @@ const Folders = () => {
               key={id}
               fileName={name}
               href={`/portal/spaces/${spaceName}/collection/snippets/${id}`}
+              isActive={snippetId === id}
             />
           ))}
         </Folder>
@@ -41,6 +43,7 @@ const Folders = () => {
               key={id}
               fileName={name}
               href={`/portal/spaces/${spaceName}/all/snippets/${id}`}
+              isActive={snippetId === id}
             />
           ))}
         </Folder>
