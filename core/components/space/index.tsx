@@ -9,29 +9,31 @@ import {
 } from "@nextui-org/react";
 import { PlusIcon, ChevronUpDownIcon } from "@heroicons/react/24/solid";
 import Icon from "@components/icon";
-import Typography from "@components/typography";
+import { convertedSpaceName, unconvertedSpaceName } from "@utilities/format";
+import { useParams, useRouter } from "next/navigation";
 
 const Space = () => {
+  const router = useRouter();
+  const { spaceName } = useParams();
+
+  const name = spaceName.toString();
+
   return (
     <Dropdown classNames={{ content: "glass border" }}>
       <DropdownTrigger>
-        <div className="flex w-full items-center  gap-4">
-          <div className="h-8 w-10 rounded-base bg-gray-300" />
-          <div className="flex w-full items-center">
-            <div>
-              <Typography>Sample</Typography>
-              <Typography heading="subtitle" className="text-gray-400">
-                Space
-              </Typography>
-            </div>
-            <div className="ml-auto">
-              <Icon Element={ChevronUpDownIcon} />
-            </div>
+        <div className="grid grid-cols-3 items-center">
+          <div className="grid h-10 w-10 place-items-center rounded-base bg-gray-300 bg-gradient-to-r from-emerald-400 to-cyan-400">
+            <span className="text-lg font-semibold">
+              {name[0].toUpperCase()}
+            </span>
           </div>
+          <span>{unconvertedSpaceName(name) || "Default"}</span>
+          <Icon Element={ChevronUpDownIcon} className="ml-auto" />
         </div>
       </DropdownTrigger>
+
       <DropdownMenu
-        className="rounded-base"
+        className="rounded-base text-white"
         itemClasses={{
           base: [
             "rounded-base",
@@ -40,11 +42,18 @@ const Space = () => {
           ],
         }}>
         <DropdownSection
-          showDivider
           dividerProps={{
             className: "bg-white/30",
           }}>
-          <DropdownItem>Space 1</DropdownItem>
+          {spaces.map((space: (typeof spaces)[0]) => (
+            <DropdownItem
+              key={space.id}
+              onClick={() =>
+                router.push(`/portal/spaces/${convertedSpaceName(space.name)}`)
+              }>
+              {space.name}
+            </DropdownItem>
+          ))}
         </DropdownSection>
 
         <DropdownItem
@@ -58,3 +67,9 @@ const Space = () => {
 };
 
 export default Space;
+
+const spaces = [
+  { id: "unique-id-1", name: "Backend Wizard" },
+  { id: "unique-id-2", name: "Venture" },
+  { id: "unique-id-3", name: "Dev Studio" },
+];

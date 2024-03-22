@@ -13,6 +13,7 @@ import { signOut } from "next-auth/react";
 import {
   Cog8ToothIcon,
   ArrowLeftStartOnRectangleIcon,
+  UserCircleIcon,
 } from "@heroicons/react/24/solid";
 import Icon from "@components/icon";
 
@@ -45,12 +46,15 @@ const User = ({ user }: Props) => {
             "data-[hover=true]:text-white",
           ],
         }}>
+        <DropdownItem startContent={<Icon Element={UserCircleIcon} />}>
+          Profile
+        </DropdownItem>
         <DropdownItem startContent={<Icon Element={Cog8ToothIcon} />}>
           Settings
         </DropdownItem>
         <DropdownItem
           startContent={<Icon Element={ArrowLeftStartOnRectangleIcon} />}
-          className="glass border"
+          className="glass mt-2 border text-red-500"
           onClick={() => signOut()}>
           Logout
         </DropdownItem>
