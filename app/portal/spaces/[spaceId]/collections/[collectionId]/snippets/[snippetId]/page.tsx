@@ -1,14 +1,24 @@
 import Editor from "@components/editor";
 import agent from "@libraries/agent";
 import Heading from "./_components/heading";
+import api from "@libraries/api";
 
-const Snippet: Page = () => {
+type Props = {
+  params: Params;
+};
+
+const Snippet: Page<Props> = async ({ params }) => {
+  const { spaceId, collectionId, snippetId } = params;
+  const space = await api.server.get.space(spaceId);
+  const collection = await api.server.get.collection(collectionId);
+  // const snippet = await api.server.get.snippet(snippetId);
+
   const encrypted = agent.encrypt("function add(a, b) {\n  return a + b;\n}");
   const decrypted = agent.decrypt(encrypted);
 
   return (
     <main className="max-h-full space-y-8 overflow-y-auto p-8">
-      <Heading />
+      <Heading space={space} collection={collection}/>
       <div className="space-y-4">
         <p className="text-sm">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi rem

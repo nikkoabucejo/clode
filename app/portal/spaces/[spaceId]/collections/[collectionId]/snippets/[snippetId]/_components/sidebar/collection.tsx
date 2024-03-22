@@ -12,9 +12,10 @@ type Props = {
   snippets: Awaited<
     ReturnType<typeof api.server.get.collections>
   >[0]["snippets"];
+  count: number;
 };
 
-const Collection = ({ title, snippets }: Props) => {
+const Collection = ({ title, snippets, count }: Props) => {
   return (
     <Accordion
       itemClasses={{
@@ -26,17 +27,21 @@ const Collection = ({ title, snippets }: Props) => {
       }}>
       <AccordionItem
         key={1}
-        title={title}
+        title={
+          <div className="flex items-center justify-between">
+            <span>{title}</span>
+            <span>{count}</span>
+          </div>
+        }
         startContent={<Icon Element={FolderOpenIcon} className="h-4 w-4" />}>
         <div className="relative space-y-1 pl-2.5 pr-1">
           <div className="absolute -top-[18px] h-full w-[1px] bg-zinc-800" />
           {snippets.map((snippet, index) => (
-            <div className="relative flex items-center gap-1">
+            <div key={snippet.id} className="relative flex items-center gap-1">
               <div>
                 <div className="relative h-[1px] w-4 bg-zinc-800" />
               </div>
               <Link
-                key={snippet.id}
                 href="#"
                 className={cn(
                   "hover:bg-panel-tertiary block w-full rounded bg-panel-secondary px-4 py-2 text-sm",

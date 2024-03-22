@@ -1,9 +1,15 @@
 "use client";
 
 import Language from "@components/language";
+import type api from "@libraries/api";
 import { BreadcrumbItem, Breadcrumbs } from "@nextui-org/react";
 
-const Heading = () => {
+type Props = {
+  space: Awaited<ReturnType<typeof api.server.get.space>>;
+  collection: Awaited<ReturnType<typeof api.server.get.collection>>;
+};
+
+const Heading = ({ space, collection }: Props) => {
   return (
     <nav className="space-y-2">
       <div className="flex items-center gap-4">
@@ -15,9 +21,9 @@ const Heading = () => {
           separator: "px-2 text-white",
           item: "text-white",
         }}>
-        <BreadcrumbItem isDisabled>Space Name</BreadcrumbItem>
+        <BreadcrumbItem isDisabled>{space.name}</BreadcrumbItem>
         <BreadcrumbItem className="capitalize" isDisabled>
-          Collection Name
+          {collection.name}
         </BreadcrumbItem>
         <BreadcrumbItem isDisabled>DDQWDQW</BreadcrumbItem>
       </Breadcrumbs>

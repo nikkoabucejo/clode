@@ -12,6 +12,7 @@ const Directory = ({ collections }: Props) => {
         key={collection.id}
         title={collection.name}
         snippets={snippets}
+        count={collection._count.snippets}
       />
     </div>
   ));
