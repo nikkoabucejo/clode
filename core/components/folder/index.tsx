@@ -10,7 +10,7 @@ type Props = {
   hasFolderIcon?: boolean;
 };
 
-const Snippets = ({ title, children, hasFolderIcon = true }: Props) => {
+const Folder = ({ title, children, hasFolderIcon = true }: Props) => {
   return (
     <Accordion
       itemClasses={{
@@ -34,4 +34,4 @@ const Snippets = ({ title, children, hasFolderIcon = true }: Props) => {
   );
 };
 
-export default Snippets;
+export default Folder;

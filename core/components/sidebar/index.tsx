@@ -3,30 +3,13 @@ import type { User as TUser } from "@prisma/client";
 import Space from "@components/space";
 import React from "react";
 import User from "@components/user";
-import Snippets from "@components/snippets";
-import Snippet from "@components/snippets/snippet";
+import Folders from "./folders";
 
 const Sidebar = async () => {
   return (
     <aside className="glass grid h-full w-[280px]  grid-rows-[auto,1fr,auto]  gap-6 border-r px-8 py-6">
       <Space />
-      <section>
-        <Snippets title="Favorites">
-          {snippets.map((snippet) => (
-            <Snippet key={snippet} fileName={snippet} />
-          ))}
-        </Snippets>
-        <Snippets title="My Collection">
-          {snippets.map((snippet) => (
-            <Snippet key={snippet} fileName={snippet} />
-          ))}
-        </Snippets>
-        <Snippets title="Files" hasFolderIcon={false}>
-          {snippets.map((snippet) => (
-            <Snippet key={snippet} fileName={snippet} />
-          ))}
-        </Snippets>
-      </section>
+      <Folders />
       <User user={user} />
     </aside>
   );
@@ -45,5 +28,3 @@ const user: TUser = {
   role: "USER",
   emailVerified: new Date(),
 };
-
-const snippets = ["useState", "useEffect", "useRef", "bubbleSort", "quickSort"];
