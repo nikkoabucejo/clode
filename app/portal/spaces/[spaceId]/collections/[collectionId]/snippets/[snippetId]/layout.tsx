@@ -18,7 +18,9 @@ const Space: Layout<Props> = async ({ children, params }) => {
     <div
       className={`${inter.className} grid min-h-screen grid-cols-[auto,1fr] bg-black text-white`}>
       <Sidebar spaceId={spaceId} />
-      <div className="bg-panel-primary p-8">{children}</div>
+      <div className="h-screen overflow-hidden bg-panel-primary">
+        {children}
+      </div>
     </div>
   );
 };

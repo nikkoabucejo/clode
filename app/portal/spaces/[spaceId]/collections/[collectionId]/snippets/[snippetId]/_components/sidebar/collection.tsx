@@ -28,12 +28,12 @@ const Collection = ({ title, snippets }: Props) => {
         key={1}
         title={title}
         startContent={<Icon Element={FolderOpenIcon} className="h-4 w-4" />}>
-        <div className="relative space-y-1 pl-2.5">
-          <div className="absolute -top-4 h-full w-[1px] bg-line" />
+        <div className="relative space-y-1 pl-2.5 pr-1">
+          <div className="absolute -top-[18px] h-full w-[1px] bg-zinc-800" />
           {snippets.map((snippet, index) => (
             <div className="relative flex items-center gap-1">
               <div>
-                <div className="relative h-[1px] w-4 bg-line" />
+                <div className="relative h-[1px] w-4 bg-zinc-800" />
               </div>
               <Link
                 key={snippet.id}

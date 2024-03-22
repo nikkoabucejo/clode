@@ -5,7 +5,7 @@ import { BreadcrumbItem, Breadcrumbs } from "@nextui-org/react";
 
 const Heading = () => {
   return (
-    <nav className="space-y-1 py-3">
+    <nav className="space-y-2">
       <div className="flex items-center gap-4">
         <h1 className="text-2xl font-bold ">useEffect</h1>
         <Language>Javascript</Language>

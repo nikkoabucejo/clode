@@ -16,13 +16,15 @@ const Editor = ({ snippet }: Props) => {
   const [code, setCode] = useState(snippet.code);
 
   return (
-    <Card className="bg-panel-secondary gap-0 space-y-2 p-4">
+    <Card className="relative space-y-2 border-line bg-panel-secondary px-4 pb-4 pr-12">
       <button
-        className="ml-auto flex cursor-pointer items-center gap-1 text-gray-400"
+        className="absolute right-4 top-4 z-10"
         disabled={!code}
-        onClick={() => handleCopyTextToClipboard(code, "Code Copied.")}>
-        <Icon Element={ClipboardIcon} />
-        <span className="text-sm">Copy</span>
+        onClick={(event) => {
+          event.stopPropagation();
+          handleCopyTextToClipboard(code, "Code Copied.");
+        }}>
+        <Icon Element={ClipboardIcon} className="text-white" />
       </button>
       <CodeEditor
         value={code}
@@ -39,11 +41,9 @@ const Editor = ({ snippet }: Props) => {
         }}
       />
 
-      {code && (
-        <div className="w-fit rounded text-xs text-gray-400">
-          {code.split("\n").length} lines
-        </div>
-      )}
+      <div className="w-fit rounded text-xs text-gray-400">
+        {code?.split("\n").length ?? 0} lines
+      </div>
     </Card>
   );
 };
