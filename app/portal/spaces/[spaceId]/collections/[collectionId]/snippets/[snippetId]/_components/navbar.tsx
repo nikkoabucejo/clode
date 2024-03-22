@@ -2,12 +2,10 @@
 
 import Language from "@components/language";
 import { BreadcrumbItem, Breadcrumbs } from "@nextui-org/react";
-import { unconvertedSpaceName } from "@utilities/format";
 import { useParams } from "next/navigation";
-import React from "react";
 
 const Navbar = () => {
-  const { spaceName, groupName, snippetId } = useParams();
+  const { spaceId, collectionId, snippetId } = useParams<Params>();
 
   return (
     <nav className="space-y-1 py-3">
@@ -20,11 +18,9 @@ const Navbar = () => {
           separator: "px-2 text-white",
           item: "text-white",
         }}>
-        <BreadcrumbItem isDisabled>
-          {unconvertedSpaceName(String(spaceName))}
-        </BreadcrumbItem>
+        <BreadcrumbItem isDisabled>Space Name</BreadcrumbItem>
         <BreadcrumbItem className="capitalize" isDisabled>
-          {groupName}
+          Collection Name
         </BreadcrumbItem>
         <BreadcrumbItem isDisabled>{snippetId}</BreadcrumbItem>
       </Breadcrumbs>

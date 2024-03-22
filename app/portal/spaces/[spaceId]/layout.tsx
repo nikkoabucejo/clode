@@ -7,16 +7,14 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const dynamic = "force-dynamic";
 
-const SpaceLayout: Layout = ({ children }) => {
+const Space: Layout = ({ children }) => {
   return (
     <div
       className={`${inter.className} grid min-h-screen grid-cols-[auto,1fr] gap-4 bg-black text-white`}>
       <Sidebar />
-      <main>
-        <Providers>{children}</Providers>
-      </main>
+      <main>{children}</main>
     </div>
   );
 };
 
-export default SpaceLayout;
+export default Space;

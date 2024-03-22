@@ -3,17 +3,17 @@
 import { useState } from "react";
 import CodeEditor from "@uiw/react-textarea-code-editor";
 import { Card } from "@nextui-org/react";
-import { type Code } from "@prisma/client";
+import { type Snippet } from "@prisma/client";
 import Icon from "@components/icon";
 import { ClipboardIcon } from "@heroicons/react/24/outline";
 import handleCopyTextToClipboard from "@libraries/copy-clipboard";
 
 type Props = {
-  code: Code;
+  snippet: Snippet;
 };
 
-const Editor = ({ code }: Props) => {
-  const [source, setSource] = useState(code.source);
+const Editor = ({ snippet }: Props) => {
+  const [source, setSource] = useState(snippet.code);
 
   return (
     <Card className="glass gap-0 space-y-2 p-4">

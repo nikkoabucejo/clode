@@ -1,22 +1,21 @@
 import Editor from "@components/editor";
 import agent from "@libraries/agent";
-import React from "react";
+import Navbar from "./_components/navbar";
 
 type Props = {
-  params: {
-    spaceName: string;
-    groupName: string;
-    snippetId: string;
-  };
+  params: Pick<Params, "spaceId" | "collectionId" | "snippetId">;
 };
 
-const Snippet: Page<Props> = () => {
+const Snippet: Page<Props> = ({ params }) => {
+  const { spaceId, collectionId, snippetId } = params;
   const encrypted = agent.encrypt("function add(a, b) {\n  return a + b;\n}");
   const decrypted = agent.decrypt(encrypted);
+  
 
   return (
     <section>
-      <Editor code={decrypted} />
+      <Navbar />
+      <Editor snippet={decrypted} />
     </section>
   );
 };

@@ -14,20 +14,15 @@ import { useParams, useRouter } from "next/navigation";
 
 const Space = () => {
   const router = useRouter();
-  const { spaceName } = useParams();
-
-  const name = spaceName.toString();
+  const { spaceId } = useParams<Params>();
 
   return (
     <Dropdown classNames={{ content: "glass border" }}>
       <DropdownTrigger>
         <div className="grid grid-cols-3 items-center">
           <div className="grid h-10 w-10 place-items-center rounded-base bg-gray-300 bg-gradient-to-r from-emerald-400 to-cyan-400">
-            <span className="text-lg font-semibold">
-              {name[0].toUpperCase()}
-            </span>
+            Space Name
           </div>
-          <span>{unconvertedSpaceName(name) || "Default"}</span>
           <Icon Element={ChevronUpDownIcon} className="ml-auto" />
         </div>
       </DropdownTrigger>
