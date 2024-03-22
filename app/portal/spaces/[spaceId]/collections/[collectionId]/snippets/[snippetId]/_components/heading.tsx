@@ -2,11 +2,8 @@
 
 import Language from "@components/language";
 import { BreadcrumbItem, Breadcrumbs } from "@nextui-org/react";
-import { useParams } from "next/navigation";
 
-const Navbar = () => {
-  const { spaceId, collectionId, snippetId } = useParams<Params>();
-
+const Heading = () => {
   return (
     <nav className="space-y-1 py-3">
       <div className="flex items-center gap-4">
@@ -22,9 +19,9 @@ const Navbar = () => {
         <BreadcrumbItem className="capitalize" isDisabled>
           Collection Name
         </BreadcrumbItem>
-        <BreadcrumbItem isDisabled>{snippetId}</BreadcrumbItem>
+        <BreadcrumbItem isDisabled>DDQWDQW</BreadcrumbItem>
       </Breadcrumbs>
     </nav>
   );
 };
-export default Navbar;
+export default Heading;

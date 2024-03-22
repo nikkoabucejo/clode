@@ -13,22 +13,22 @@ type Props = {
 };
 
 const Editor = ({ snippet }: Props) => {
-  const [source, setSource] = useState(snippet.code);
+  const [code, setCode] = useState(snippet.code);
 
   return (
-    <Card className="glass gap-0 space-y-2 p-4">
+    <Card className="bg-panel-secondary gap-0 space-y-2 p-4">
       <button
         className="ml-auto flex cursor-pointer items-center gap-1 text-gray-400"
-        disabled={!source}
-        onClick={() => handleCopyTextToClipboard(source, "Code Copied.")}>
+        disabled={!code}
+        onClick={() => handleCopyTextToClipboard(code, "Code Copied.")}>
         <Icon Element={ClipboardIcon} />
         <span className="text-sm">Copy</span>
       </button>
       <CodeEditor
-        value={source}
+        value={code}
         language="jsx"
         placeholder="Please enter code."
-        onChange={(evn) => setSource(evn.target.value)}
+        onChange={(event) => setCode(event.target.value)}
         padding={15}
         className="p-0 placeholder:text-white"
         style={{
@@ -39,9 +39,9 @@ const Editor = ({ snippet }: Props) => {
         }}
       />
 
-      {source && (
-        <div className="w-fit rounded-base text-xs text-gray-400">
-          {source.split("\n").length} lines
+      {code && (
+        <div className="w-fit rounded text-xs text-gray-400">
+          {code.split("\n").length} lines
         </div>
       )}
     </Card>

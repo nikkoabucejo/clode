@@ -1,7 +1,5 @@
 "use client";
 
-import React from "react";
-import type { User as TUser } from "@prisma/client";
 import {
   Dropdown,
   DropdownItem,
@@ -16,33 +14,34 @@ import {
   UserCircleIcon,
 } from "@heroicons/react/24/solid";
 import Icon from "@components/icon";
+import api from "@libraries/api";
 
 type Props = {
-  user: TUser;
+  user: Awaited<ReturnType<typeof api.server.get.user>>;
 };
 
 const User = ({ user }: Props) => {
-  if (!user) return null;
-
   return (
-    <Dropdown classNames={{ content: "glass border" }}>
+    <Dropdown
+      classNames={{ content: "border border-line bg-panel-tertiary w-full" }}>
       <DropdownTrigger>
         <NextUIUser
           name={user.name}
           description={user.email}
           avatarProps={{
             src: user.image ?? "",
-            size: "sm",
           }}
-          className="w-full rounded-base border border-white/10 bg-white/10 p-2"
+          className="bg-panel-tertiary w-full justify-start rounded border border-line p-4"
         />
       </DropdownTrigger>
       <DropdownMenu
-        className="rounded-base"
+        classNames={{
+          base: "rounded",
+        }}
         itemClasses={{
           base: [
-            "rounded-base",
-            "data-[hover=true]:glass",
+            "rounded",
+            "data-[hover=true]:bg-panel-primary",
             "data-[hover=true]:text-white",
           ],
         }}>
@@ -52,9 +51,10 @@ const User = ({ user }: Props) => {
         <DropdownItem startContent={<Icon Element={Cog8ToothIcon} />}>
           Settings
         </DropdownItem>
+
         <DropdownItem
           startContent={<Icon Element={ArrowLeftStartOnRectangleIcon} />}
-          className="glass mt-2 border text-red-500"
+          className="text-red-500"
           onClick={() => signOut()}>
           Logout
         </DropdownItem>
