@@ -75,7 +75,7 @@ model Preferences {
 
 model Snippet {
   id          String @id @default(uuid())
-  title       String
+  name        String
   description String
   language    String
   code        String @db.Text

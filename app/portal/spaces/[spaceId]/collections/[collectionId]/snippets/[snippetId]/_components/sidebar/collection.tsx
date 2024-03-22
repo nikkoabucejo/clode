@@ -8,14 +8,14 @@ import cn from "@utilities/cn";
 import Link from "next/link";
 
 type Props = {
-  title: string;
+  name: string;
   snippets: Awaited<
     ReturnType<typeof api.server.get.collections>
   >[0]["snippets"];
   count: number;
 };
 
-const Collection = ({ title, snippets, count }: Props) => {
+const Collection = ({ name, snippets, count }: Props) => {
   return (
     <Accordion
       itemClasses={{
@@ -29,7 +29,7 @@ const Collection = ({ title, snippets, count }: Props) => {
         key={1}
         title={
           <div className="flex items-center justify-between">
-            <span>{title}</span>
+            <span>{name}</span>
             <span>{count}</span>
           </div>
         }
@@ -44,12 +44,12 @@ const Collection = ({ title, snippets, count }: Props) => {
               <Link
                 href="#"
                 className={cn(
-                  "hover:bg-panel-tertiary block w-full rounded bg-panel-secondary px-4 py-2 text-sm",
+                  "block w-full rounded bg-panel-secondary px-4 py-2 text-sm hover:bg-panel-tertiary",
                   {
                     "bg-panel-tertiary": index === 1,
                   },
                 )}>
-                {snippet.title}
+                {snippet.name}
               </Link>
             </div>
           ))}

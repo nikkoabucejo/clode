@@ -10,7 +10,7 @@ const getCollections = cache(async (spaceId: ID) => {
         snippets: {
           select: {
             id: true,
-            title: true,
+            name: true,
             language: true,
           },
         },
