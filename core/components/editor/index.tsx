@@ -16,9 +16,10 @@ const Editor = ({ code }: Props) => {
   const [source, setSource] = useState(code.source);
 
   return (
-    <Card className="glass space-y-2 p-4">
+    <Card className="glass gap-0 space-y-2 p-4">
       <button
         className="ml-auto flex cursor-pointer items-center gap-1 text-gray-400"
+        disabled={!source}
         onClick={() => handleCopyTextToClipboard(source, "Code Copied.")}>
         <Icon Element={ClipboardIcon} />
         <span className="text-sm">Copy</span>
@@ -26,10 +27,10 @@ const Editor = ({ code }: Props) => {
       <CodeEditor
         value={source}
         language="jsx"
-        placeholder="Please enter React code."
+        placeholder="Please enter code."
         onChange={(evn) => setSource(evn.target.value)}
         padding={15}
-        className="-mt-2 placeholder:text-white"
+        className="p-0 placeholder:text-white"
         style={{
           backgroundColor: "transparent",
           color: "white",
