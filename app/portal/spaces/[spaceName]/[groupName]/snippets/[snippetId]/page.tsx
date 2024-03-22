@@ -10,9 +10,7 @@ type Props = {
   };
 };
 
-const Snippet: Page<Props> = ({ params }) => {
-  const { spaceName, groupName, snippetId } = params;
-
+const Snippet: Page<Props> = () => {
   const encrypted = agent.encrypt("function add(a, b) {\n  return a + b;\n}");
   const decrypted = agent.decrypt(encrypted);
 
