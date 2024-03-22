@@ -13,15 +13,17 @@ const Editor = ({ code }: Props) => {
   const [source, setSource] = useState(code.source);
 
   return (
-    <Card className="py-4">
+    <Card className="glass py-4">
       <CodeEditor
         value={source}
         language="jsx"
         placeholder="Please enter React code."
         onChange={(evn) => setSource(evn.target.value)}
         padding={15}
+        className="placeholder:text-white"
         style={{
-          backgroundColor: "#f5f5f5",
+          backgroundColor: "transparent",
+          color: "white",
           fontFamily:
             "ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace",
         }}
