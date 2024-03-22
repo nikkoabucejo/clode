@@ -2,7 +2,12 @@
 
 import Language from "@components/language";
 import type api from "@libraries/api";
-import { BreadcrumbItem, Breadcrumbs } from "@nextui-org/react";
+import {
+  Avatar,
+  AvatarGroup,
+  BreadcrumbItem,
+  Breadcrumbs,
+} from "@nextui-org/react";
 
 type Props = {
   space: Awaited<ReturnType<typeof api.server.get.space>>;
@@ -11,11 +16,7 @@ type Props = {
 
 const Heading = ({ space, collection }: Props) => {
   return (
-    <nav className="space-y-2">
-      <div className="flex items-center gap-4">
-        <h1 className="text-2xl font-bold ">useEffect</h1>
-        <Language>Javascript</Language>
-      </div>
+    <nav className="space-y-4">
       <Breadcrumbs
         itemClasses={{
           separator: "px-2 text-white",
@@ -25,8 +26,49 @@ const Heading = ({ space, collection }: Props) => {
         <BreadcrumbItem className="capitalize" isDisabled>
           {collection.name}
         </BreadcrumbItem>
-        <BreadcrumbItem isDisabled>DDQWDQW</BreadcrumbItem>
+        <BreadcrumbItem isDisabled>Sample React Snippet</BreadcrumbItem>
       </Breadcrumbs>
+
+      <AvatarGroup isBordered className="justify-start">
+        <Avatar
+          size="sm"
+          src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
+        />
+        <Avatar
+          size="sm"
+          src="https://i.pravatar.cc/150?u=a04258a2462d826712d"
+        />
+        <Avatar
+          size="sm"
+          src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+        />
+        <Avatar
+          size="sm"
+          src="https://i.pravatar.cc/150?u=a04258114e29026302d"
+        />
+        <Avatar
+          size="sm"
+          src="https://i.pravatar.cc/150?u=a04258114e29026702d"
+        />
+        <Avatar
+          size="sm"
+          src="https://i.pravatar.cc/150?u=a04258114e29026708c"
+        />
+      </AvatarGroup>
+
+      <div className="space-y-2">
+        <div className="flex items-center gap-4">
+          <h1 className="text-2xl font-bold ">Sample React Snippet</h1>
+          <Language>Javascript</Language>
+        </div>
+
+        <p className="text-sm">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi rem
+          doloribus similique ea excepturi, harum cum sapiente corporis error
+          fugit aut doloremque fuga enim vel, iusto explicabo esse illo amet.
+          Deleniti corrupti laborum similique earum modi minus a iure eaque
+        </p>
+      </div>
     </nav>
   );
 };
