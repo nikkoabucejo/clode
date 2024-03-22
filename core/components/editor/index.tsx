@@ -16,7 +16,7 @@ const Editor = ({ code }: Props) => {
   const [source, setSource] = useState(code.source);
 
   return (
-    <Card className="glass p-4">
+    <Card className="glass space-y-2 p-4">
       <button
         className="ml-auto flex cursor-pointer items-center gap-1"
         onClick={() => handleCopyTextToClipboard(source, "Code Copied.")}>
@@ -37,6 +37,12 @@ const Editor = ({ code }: Props) => {
             "ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace",
         }}
       />
+
+      {source && (
+        <div className="w-fit rounded-base text-xs text-gray-400">
+          {source.split("\n").length} lines
+        </div>
+      )}
     </Card>
   );
 };
