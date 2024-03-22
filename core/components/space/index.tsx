@@ -33,7 +33,7 @@ const Space = () => {
       </DropdownTrigger>
 
       <DropdownMenu
-        className="rounded-base"
+        className="rounded-base text-white"
         itemClasses={{
           base: [
             "rounded-base",
