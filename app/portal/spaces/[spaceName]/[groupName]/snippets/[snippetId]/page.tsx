@@ -16,8 +16,6 @@ const Snippet: Page<Props> = ({ params }) => {
   const encrypted = agent.encrypt("function add(a, b) {\n  return a + b;\n}");
   const decrypted = agent.decrypt(encrypted);
 
-  console.log({ encrypted, decrypted });
-
   return (
     <section>
       <Editor code={decrypted} />

@@ -15,7 +15,7 @@ const Root: Layout = ({ children }) => {
   return (
     <html lang="en">
       <body
-        className={`${inter.className}`}>
+        className={`${inter.className} text-white`}>
         <main>{children}</main>
       </body>
     </html>
