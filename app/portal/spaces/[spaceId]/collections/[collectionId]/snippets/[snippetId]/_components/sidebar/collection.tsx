@@ -28,19 +28,25 @@ const Collection = ({ title, snippets }: Props) => {
         key={1}
         title={title}
         startContent={<Icon Element={FolderOpenIcon} className="h-4 w-4" />}>
-        <div className="space-y-1 pl-8">
+        <div className="relative space-y-1 pl-2.5">
+          <div className="absolute -top-4 h-full w-[1px] bg-line" />
           {snippets.map((snippet, index) => (
-            <Link
-              key={snippet.id}
-              href="#"
-              className={cn(
-                "hover:bg-panel-tertiary block w-full rounded bg-panel-secondary px-4 py-2 text-sm",
-                {
-                  "bg-panel-tertiary": index === 1,
-                },
-              )}>
-              {snippet.title}
-            </Link>
+            <div className="relative flex items-center gap-1">
+              <div>
+                <div className="relative h-[1px] w-4 bg-line" />
+              </div>
+              <Link
+                key={snippet.id}
+                href="#"
+                className={cn(
+                  "hover:bg-panel-tertiary block w-full rounded bg-panel-secondary px-4 py-2 text-sm",
+                  {
+                    "bg-panel-tertiary": index === 1,
+                  },
+                )}>
+                {snippet.title}
+              </Link>
+            </div>
           ))}
         </div>
       </AccordionItem>
