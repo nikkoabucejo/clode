@@ -2,12 +2,7 @@
 
 import Language from "@components/language";
 import type api from "@libraries/api";
-import {
-  Avatar,
-  AvatarGroup,
-  BreadcrumbItem,
-  Breadcrumbs,
-} from "@nextui-org/react";
+import { BreadcrumbItem, Breadcrumbs } from "@nextui-org/react";
 
 type Props = {
   space: Awaited<ReturnType<typeof api.server.get.space>>;
@@ -16,34 +11,7 @@ type Props = {
 
 const Heading = ({ space, collection }: Props) => {
   return (
-    <nav className="space-y-4">
-      <AvatarGroup className="justify-start " max={10} size="sm">
-        <Avatar src="https://i.pravatar.cc/150?u=a042581f4e29026024d" />
-        <Avatar src="https://i.pravatar.cc/150?u=a04258a2462d826712d" />
-        <Avatar src="https://i.pravatar.cc/150?u=a042581f4e29026704d" />
-        <Avatar src="https://i.pravatar.cc/150?u=a04258114e29026302d" />
-        <Avatar src="https://i.pravatar.cc/150?u=a04258114e29026702d" />
-        <Avatar src="https://i.pravatar.cc/150?u=a04258114e29026708c" />
-        <Avatar src="https://i.pravatar.cc/150?u=a042581f4e29026024d" />
-        <Avatar src="https://i.pravatar.cc/150?u=a04258a2462d826712d" />
-        <Avatar src="https://i.pravatar.cc/150?u=a042581f4e29026704d" />
-        <Avatar src="https://i.pravatar.cc/150?u=a04258114e29026302d" />
-        <Avatar src="https://i.pravatar.cc/150?u=a04258114e29026702d" />
-        <Avatar src="https://i.pravatar.cc/150?u=a04258114e29026708c" />
-        <Avatar src="https://i.pravatar.cc/150?u=a042581f4e29026024d" />
-        <Avatar src="https://i.pravatar.cc/150?u=a04258a2462d826712d" />
-        <Avatar src="https://i.pravatar.cc/150?u=a042581f4e29026704d" />
-        <Avatar src="https://i.pravatar.cc/150?u=a04258114e29026302d" />
-        <Avatar src="https://i.pravatar.cc/150?u=a04258114e29026702d" />
-        <Avatar src="https://i.pravatar.cc/150?u=a04258114e29026708c" />
-        <Avatar src="https://i.pravatar.cc/150?u=a042581f4e29026024d" />
-        <Avatar src="https://i.pravatar.cc/150?u=a04258a2462d826712d" />
-        <Avatar src="https://i.pravatar.cc/150?u=a042581f4e29026704d" />
-        <Avatar src="https://i.pravatar.cc/150?u=a04258114e29026302d" />
-        <Avatar src="https://i.pravatar.cc/150?u=a04258114e29026702d" />
-        <Avatar src="https://i.pravatar.cc/150?u=a04258114e29026708c" />
-      </AvatarGroup>
-
+    <div className="space-y-4">
       <Breadcrumbs
         itemClasses={{
           separator: "px-2 text-white",
@@ -69,7 +37,7 @@ const Heading = ({ space, collection }: Props) => {
           Deleniti corrupti laborum similique earum modi minus a iure eaque
         </p>
       </div>
-    </nav>
+    </div>
   );
 };
 export default Heading;

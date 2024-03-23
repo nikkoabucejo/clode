@@ -5,7 +5,7 @@ type Props = {
 };
 
 const Language = ({ children }: Props) => {
-  return <Chip color="warning">{children}</Chip>;
+  return <Chip>{children}</Chip>;
 };
 
 export default Language;
