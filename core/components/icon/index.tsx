@@ -12,7 +12,7 @@ type IconProps = {
 };
 
 const Icon = ({ Element, className = "" }: IconProps) => {
-  const style = cn("w-6 h-6", className);
+  const style = cn("w-4 h-4", className);
 
   return <Element className={style} />;
 };

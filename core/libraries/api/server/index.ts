@@ -1,10 +1,12 @@
 import createCode from "./create-code";
 import deleteAccount from "./delete-account";
 import getAccounts from "./get-accounts";
-import getCode from "./get-code";
+import getCollection from "./get-collection";
 import getCollections from "./get-collections";
 import getPreferences from "./get-preferences";
 import getSettings from "./get-settings";
+import getSnippet from "./get-snippet";
+import getSpace from "./get-space";
 import getSpaces from "./get-spaces";
 import getUser from "./get-user";
 
@@ -15,8 +17,10 @@ const server = {
     settings: getSettings,
     preferences: getPreferences,
     collections: getCollections,
+    collection: getCollection,
     spaces: getSpaces,
-    code: getCode,
+    space: getSpace,
+    snippet: getSnippet,
   },
   create: {
     code: createCode,

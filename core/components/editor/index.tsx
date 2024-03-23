@@ -3,32 +3,34 @@
 import { useState } from "react";
 import CodeEditor from "@uiw/react-textarea-code-editor";
 import { Card } from "@nextui-org/react";
-import { type Code } from "@prisma/client";
+import { type Snippet } from "@prisma/client";
 import Icon from "@components/icon";
 import { ClipboardIcon } from "@heroicons/react/24/outline";
 import handleCopyTextToClipboard from "@libraries/copy-clipboard";
 
 type Props = {
-  code: Code;
+  snippet: Snippet;
 };
 
-const Editor = ({ code }: Props) => {
-  const [source, setSource] = useState(code.source);
+const Editor = ({ snippet }: Props) => {
+  const [code, setCode] = useState(snippet.code);
 
   return (
-    <Card className="glass gap-0 space-y-2 p-4">
+    <Card className="relative space-y-2 border-line bg-panel-secondary px-4 pb-4 pr-12">
       <button
-        className="ml-auto flex cursor-pointer items-center gap-1 text-gray-400"
-        disabled={!source}
-        onClick={() => handleCopyTextToClipboard(source, "Code Copied.")}>
-        <Icon Element={ClipboardIcon} />
-        <span className="text-sm">Copy</span>
+        className="absolute right-4 top-4 z-10"
+        disabled={!code}
+        onClick={(event) => {
+          event.stopPropagation();
+          handleCopyTextToClipboard(code, "Code Copied.");
+        }}>
+        <Icon Element={ClipboardIcon} className="text-white" />
       </button>
       <CodeEditor
-        value={source}
+        value={code}
         language="jsx"
         placeholder="Please enter code."
-        onChange={(evn) => setSource(evn.target.value)}
+        onChange={(event) => setCode(event.target.value)}
         padding={15}
         className="p-0 placeholder:text-white"
         style={{
@@ -39,11 +41,9 @@ const Editor = ({ code }: Props) => {
         }}
       />
 
-      {source && (
-        <div className="w-fit rounded-base text-xs text-gray-400">
-          {source.split("\n").length} lines
-        </div>
-      )}
+      <div className="w-fit rounded text-xs text-gray-400">
+        {code?.split("\n").length ?? 0} lines
+      </div>
     </Card>
   );
 };

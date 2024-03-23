@@ -10,6 +10,14 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        panel: {
+          primary: "#0f0f0f",
+          secondary: "#1A1A1A",
+          tertiary: "#242424",
+        },
+        line: "#27272a",
+      },
       screens: {
         base: "640px",
         tablet: "768px",
@@ -17,7 +25,7 @@ const config: Config = {
         desktop: "1280px",
       },
       borderRadius: {
-        base: "8px",
+        DEFAULT: "8px",
       },
       fontSize: {
         headliner: "32px",

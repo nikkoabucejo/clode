@@ -7,16 +7,16 @@ const getCollections = cache(async (spaceId: ID) => {
     const collections = await database.collection.findMany({
       where: { spaceId },
       include: {
-        codes: {
+        snippets: {
           select: {
             id: true,
-            title: true,
+            name: true,
             language: true,
           },
         },
         _count: {
           select: {
-            codes: true,
+            snippets: true,
           },
         },
       },

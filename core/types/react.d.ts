@@ -9,3 +9,9 @@ type Layout<TProps = unknown> = React.FC<
     }
   >
 >;
+
+type Params = {
+  spaceId: string;
+  collectionId: string;
+  snippetId: string;
+};

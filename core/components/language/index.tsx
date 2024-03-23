@@ -5,11 +5,7 @@ type Props = {
 };
 
 const Language = ({ children }: Props) => {
-  return (
-    <Chip className="glass border px-2 py-1 text-sm font-medium text-white">
-      {children}
-    </Chip>
-  );
+  return <Chip>{children}</Chip>;
 };
 
 export default Language;

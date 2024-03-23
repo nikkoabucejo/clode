@@ -73,12 +73,12 @@ model Preferences {
   userId String @unique
 }
 
-model Code {
+model Snippet {
   id          String @id @default(uuid())
-  title       String
+  name        String
   description String
   language    String
-  source      String @db.Text
+  code        String @db.Text
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -94,9 +94,9 @@ model Collection {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  space   Space?  @relation(fields: [spaceId], references: [id], onDelete: Cascade)
-  spaceId String?
-  codes   Code[]
+  space    Space?    @relation(fields: [spaceId], references: [id], onDelete: Cascade)
+  spaceId  String?
+  snippets Snippet[]
 }
 
 model Space {
@@ -117,7 +117,7 @@ model Membership {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId  String
   space   Space  @relation(fields: [spaceId], references: [id], onDelete: Cascade)
   spaceId String
