@@ -14,7 +14,7 @@ import {
   UserCircleIcon,
 } from "@heroicons/react/24/solid";
 import Icon from "@components/icon";
-import api from "@libraries/api";
+import type api from "@libraries/api";
 
 type Props = {
   user: Awaited<ReturnType<typeof api.server.get.user>>;
@@ -31,7 +31,7 @@ const User = ({ user }: Props) => {
           avatarProps={{
             src: user.image ?? "",
           }}
-          className="bg-panel-tertiary w-full justify-start rounded border border-line p-4"
+          className="w-full justify-start rounded border border-line bg-panel-tertiary p-4"
         />
       </DropdownTrigger>
       <DropdownMenu

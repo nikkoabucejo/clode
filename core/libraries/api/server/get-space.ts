@@ -1,6 +1,5 @@
 import database from "@libraries/database";
 import { cache } from "react";
-import api from "@libraries/api";
 import Grab from "@libraries/grab";
 
 const getSpace = cache(async (id: ID) => {

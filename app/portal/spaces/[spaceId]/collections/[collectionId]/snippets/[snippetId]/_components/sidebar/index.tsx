@@ -9,7 +9,6 @@ type Props = {
 };
 
 const Sidebar = async ({ spaceId }: Props) => {
-  const spaces = await api.server.get.spaces();
   const collections = await api.server.get.collections(spaceId);
   const user = await api.server.get.user();
 

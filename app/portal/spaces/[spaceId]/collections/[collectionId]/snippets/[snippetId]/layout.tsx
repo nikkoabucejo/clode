@@ -1,14 +1,13 @@
 import "@styles/globals.css";
 import { Inter } from "next/font/google";
-import Sidebar from "@app/portal/spaces/[spaceId]/collections/[collectionId]/snippets/[snippetId]/_components/sidebar";
-import api from "@libraries/api";
+import Sidebar from "./_components/sidebar";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const dynamic = "force-dynamic";
 
 type Props = {
-  params: Pick<Params, "spaceId" | "collectionId" | "snippetId">;
+  params: Params;
 };
 
 const Space: Layout<Props> = async ({ children, params }) => {

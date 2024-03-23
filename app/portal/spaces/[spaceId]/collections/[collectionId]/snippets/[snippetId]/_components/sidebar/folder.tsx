@@ -2,20 +2,19 @@
 
 import Icon from "@components/icon";
 import { FolderOpenIcon } from "@heroicons/react/24/solid";
-import api from "@libraries/api";
+import type api from "@libraries/api";
 import { Accordion, AccordionItem } from "@nextui-org/react";
 import cn from "@utilities/cn";
 import Link from "next/link";
 
 type Props = {
   name: string;
-  snippets: Awaited<
-    ReturnType<typeof api.server.get.collections>
-  >[0]["snippets"];
-  count: number;
+  collection: Awaited<ReturnType<typeof api.server.get.collections>>[0];
 };
 
-const Collection = ({ name, snippets, count }: Props) => {
+const Folder = ({ name, collection }: Props) => {
+  const count = collection._count.snippets;
+
   return (
     <Accordion
       itemClasses={{
@@ -23,7 +22,7 @@ const Collection = ({ name, snippets, count }: Props) => {
         title: "text-white text-sm",
         indicator: "-rotate-180",
         startContent: "text-white",
-        content: "overflow-y-scroll max-h-unit-96",
+        content: "overflow-y-auto max-h-unit-96",
       }}>
       <AccordionItem
         key={1}
@@ -59,4 +58,12 @@ const Collection = ({ name, snippets, count }: Props) => {
   );
 };
 
-export default Collection;
+export default Folder;
+
+export const snippets = [
+  { name: "useState", id: "1", language: "JavaScript" },
+  { name: "useEffect", id: "2", language: "JavaScript" },
+  { name: "useRef", id: "3", language: "TypeScript" },
+  { name: "bubbleSort", id: "4", language: "Python" },
+  { name: "quickSort", id: "5", language: "Python" },
+];
