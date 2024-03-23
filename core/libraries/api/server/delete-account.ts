@@ -1,5 +1,5 @@
-import database from "@libraries/database";
-import Grab from "@libraries/grab";
+import database from "@core/libraries/database";
+import Grab from "@core/libraries/grab";
 
 const deleteAccount = async (id: ID) => {
   try {

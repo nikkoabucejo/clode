@@ -1,6 +1,6 @@
-import api from "@libraries/api";
+import api from "@core/libraries/api";
 import Directory from "./directory";
-import Icon from "@components/icon";
+import Icon from "@core/components/icon";
 import { ChevronUpDownIcon } from "@heroicons/react/24/solid";
 import User from "./user";
 

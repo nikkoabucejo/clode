@@ -1,4 +1,5 @@
-import createCode from "./create-code";
+import createCollection from "./create-collection";
+import createSnippet from "./create-snippet";
 import deleteAccount from "./delete-account";
 import getAccounts from "./get-accounts";
 import getCollection from "./get-collection";
@@ -23,7 +24,8 @@ const server = {
     snippet: getSnippet,
   },
   create: {
-    code: createCode,
+    snippet: createSnippet,
+    collection: createCollection,
   },
   delete: {
     account: deleteAccount,

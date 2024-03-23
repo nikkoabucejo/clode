@@ -1,5 +1,5 @@
-import auth from "@libraries/auth";
-import database from "@libraries/database";
+import auth from "@core/libraries/auth";
+import database from "@core/libraries/database";
 import { redirect } from "next/navigation";
 import { cache } from "react";
 

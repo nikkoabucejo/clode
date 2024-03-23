@@ -1,7 +1,7 @@
 "use client";
 
-import Language from "@components/language";
-import type api from "@libraries/api";
+import Language from "@core/components/language";
+import type api from "@core/libraries/api";
 import { BreadcrumbItem, Breadcrumbs } from "@nextui-org/react";
 
 type Props = {

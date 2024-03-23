@@ -1,7 +1,7 @@
-import Editor from "@components/editor";
-import agent from "@libraries/agent";
+import Editor from "@core/components/editor";
+import agent from "@core/libraries/agent";
 import Heading from "./_components/heading";
-import api from "@libraries/api";
+import api from "@core/libraries/api";
 
 type Props = {
   params: Params;
@@ -12,10 +12,10 @@ const Snippet: Page<Props> = async ({ params }) => {
   const space = await api.server.get.space(spaceId);
   const collection = await api.server.get.collection(collectionId);
 
-  const encrypted = agent.encrypt(`import Editor from "@components/editor";
-import agent from "@libraries/agent";
+  const encrypted = agent.encrypt(`import Editor from "@core/components/editor";
+import agent from "@core/libraries/agent";
 import Heading from "./_components/heading";
-import api from "@libraries/api";
+import api from "@core/libraries/api";
 
 type Props = {
   params: Params;

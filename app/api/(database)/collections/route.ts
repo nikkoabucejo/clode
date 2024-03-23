@@ -1,14 +1,21 @@
-import api from "@libraries/api";
-import guard from "@libraries/guard";
-import { type Prisma } from "@prisma/client";
+import api from "@core/libraries/api";
+import guard from "@core/libraries/guard";
+import schemas from "@core/schemas";
 import { type NextRequest, NextResponse } from "next/server";
 
 export const POST = async (request: NextRequest) => {
   return await guard(request.method, {
     authenticated: async ({ context }) => {
       try {
-        const body: Prisma.CodeCreateInput = await request.json();
-        const createdCode = await api.server.create.code(body);
+        const body = await request.json();
+
+        const result = schemas.create.collection.safeParse(body);
+
+        if (!result.success) {
+          return NextResponse.json(result.error.errors, { status: 400 });
+        }
+
+        const createdCode = await api.server.create.collection(result.data);
         return NextResponse.json(createdCode, { status: context.status });
       } catch (error) {
         if (error instanceof Error) {

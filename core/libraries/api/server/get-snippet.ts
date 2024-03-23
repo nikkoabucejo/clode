@@ -1,6 +1,6 @@
-import agent from "@libraries/agent";
-import database from "@libraries/database";
-import Grab from "@libraries/grab";
+import agent from "@core/libraries/agent";
+import database from "@core/libraries/database";
+import Grab from "@core/libraries/grab";
 import { cache } from "react";
 
 const getSnippet = cache(async (id: ID) => {

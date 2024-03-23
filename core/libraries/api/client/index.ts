@@ -1,8 +1,8 @@
-import createCode from "./create-code";
+import createSnippet from "./create-snippet";
 
 const client = {
   create: {
-    code: createCode,
+    snippet: createSnippet,
   },
 };
 

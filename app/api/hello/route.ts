@@ -1,4 +1,4 @@
-import guard from "@libraries/guard";
+import guard from "@core/libraries/guard";
 import { type NextRequest, NextResponse } from "next/server";
 
 export const GET = async (request: NextRequest) => {

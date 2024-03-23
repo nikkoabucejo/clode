@@ -4,9 +4,9 @@ import { useState } from "react";
 import CodeEditor from "@uiw/react-textarea-code-editor";
 import { Card } from "@nextui-org/react";
 import { type Snippet } from "@prisma/client";
-import Icon from "@components/icon";
+import Icon from "@core/components/icon";
 import { ClipboardIcon } from "@heroicons/react/24/outline";
-import handleCopyTextToClipboard from "@libraries/copy-clipboard";
+import handleCopyTextToClipboard from "@core/libraries/copy-clipboard";
 
 type Props = {
   snippet: Snippet;

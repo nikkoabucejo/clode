@@ -1,4 +1,4 @@
-import cn from "@utilities/cn";
+import cn from "@core/libraries/cn";
 import React from "react";
 
 type IconProps = {

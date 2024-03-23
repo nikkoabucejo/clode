@@ -1,5 +1,5 @@
-import api from "@libraries/api/server";
-import { signIn, signOut } from "@libraries/auth";
+import api from "@core/libraries/api/server";
+import { signIn, signOut } from "@core/libraries/auth";
 import { Button } from "@nextui-org/react";
 
 export const LinkedSignIn = () => {

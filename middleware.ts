@@ -1,4 +1,4 @@
-import auth from "@libraries/auth";
+import auth from "@core/libraries/auth";
 
 export default auth(() => {
   console.log("Middleware is running");
