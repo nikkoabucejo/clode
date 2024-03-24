@@ -1,4 +1,4 @@
-import api from "@core/libraries/api";
+import api from "@core/libraries/api/server";
 import guard from "@core/libraries/guard";
 import schemas from "@core/schemas";
 import { type NextRequest, NextResponse } from "next/server";

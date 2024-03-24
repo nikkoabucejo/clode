@@ -11,6 +11,7 @@
     "lint": "next lint",
     "database:push": "prisma db push && prisma generate",
     "database:studio": "prisma studio --port 8888",
+    "database:generate": "prisma generate",
     "format:write": "prettier --write app/* core/**/*",
     "format:check": "prettier --check app/* core/**/*",
     "test": "vitest run",

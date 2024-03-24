@@ -32,7 +32,7 @@ export const SignIn = () => {
 };
 
 export const SignOut = async ({ children }: { children: Children }) => {
-  const accounts = await api.get.accounts();
+  const accounts = await api.server.get.accounts();
 
   return (
     <div>

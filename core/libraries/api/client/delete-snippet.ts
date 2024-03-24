@@ -1,6 +1,6 @@
 import fetcher from "@core/utilities/fetcher";
 import Grab from "@core/utilities/grab";
-import api from "..";
+import api from "../server";
 
 const deleteSnippet = async (id: ID) => {
   try {

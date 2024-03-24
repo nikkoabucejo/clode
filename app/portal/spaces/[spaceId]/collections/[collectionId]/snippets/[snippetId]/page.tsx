@@ -1,6 +1,6 @@
 import Editor from "@core/components/editor";
 import Heading from "./_components/heading";
-import api from "@core/libraries/api";
+import api from "@core/libraries/api/server";
 
 type Props = {
   params: Params;
