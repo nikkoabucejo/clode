@@ -8,38 +8,39 @@ import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 
 const Creators = () => {
-  const [createDirectory, setCreateDirectory] = useState(false);
+  const [isCreateCollection, setIsCreateCollection] = useState(false);
   const [inputValue, setInputValue] = useState("");
 
   const inputRef = useRef(null);
 
   const createCollection = api.create.collection;
 
-  const router = useRouter()
-  
+  const router = useRouter();
+
   return (
     <div className="mb-2 flex flex-col gap-2">
       {/* buttons */}
       <div className="flex place-content-end items-center gap-2">
         <button
-          onClick={() => setCreateDirectory(!createDirectory)}
+          onClick={() => setIsCreateCollection(!isCreateCollection)}
           onBlur={(e) => {
             if (e.relatedTarget !== inputRef.current) {
-              setCreateDirectory(false);
+              setIsCreateCollection(false);
               setInputValue("");
             }
           }}
-          className={`rounded p-1 ${createDirectory ? "bg-white/10" : "hover:bg-white/10"}`}>
+          className={`rounded p-1 ${isCreateCollection ? "bg-white/10" : "hover:bg-white/10"}`}>
           <Icon Element={FolderPlusIcon} />
         </button>
       </div>
 
-      {createDirectory && (
+      {isCreateCollection && (
         <div
           className="flex items-center gap-2 pl-3"
           tabIndex={-1}
           role="button"
           onKeyDown={async (e) => {
+            if (e.key === "Escape") setIsCreateCollection(false);
             if (e.key === "Enter") {
               e.preventDefault();
               await createCollection({
@@ -49,8 +50,8 @@ const Creators = () => {
                 },
               });
               setInputValue("");
-              setCreateDirectory(false);
-              router.refresh()
+              setIsCreateCollection(false);
+              router.refresh();
             }
           }}>
           <Icon Element={FolderIcon} className="text-yellow-500" />
