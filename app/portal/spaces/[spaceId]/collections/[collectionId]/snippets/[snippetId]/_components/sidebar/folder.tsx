@@ -1,19 +1,20 @@
 "use client";
 
 import Icon from "@core/components/icon";
-import { FolderOpenIcon, PlusIcon } from "@heroicons/react/24/solid";
-import clientApi from "@core/libraries/api/client";
-import serverApi from "@core/libraries/api/server";
-import { Accordion, AccordionItem } from "@nextui-org/react";
+import api from "@core/libraries/api/client";
 import cn from "@core/utilities/cn";
 import Link from "next/link";
+
+import { FolderOpenIcon, PlusIcon } from "@heroicons/react/24/solid";
+import { Accordion, AccordionItem } from "@nextui-org/react";
 import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import generate from "@core/utilities/generate";
+
+import type API from "@core/libraries/api/server";
 
 type Props = {
   name: string;
-  collection: Awaited<ReturnType<typeof serverApi.get.collections>>[0];
+  collection: Awaited<ReturnType<typeof API.get.collections>>[0];
 };
 
 const Folder = ({ name, collection }: Props) => {
@@ -23,7 +24,7 @@ const Folder = ({ name, collection }: Props) => {
   const [inputValue, setInputValue] = useState("");
   const [selectedKeys, setSelectedKeys] = useState(new Set([collectionId]));
 
-  const createSnippet = clientApi.create.snippet;
+  const createSnippet = api.create.snippet;
 
   const router = useRouter();
 
