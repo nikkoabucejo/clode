@@ -2,22 +2,28 @@
 
 import Icon from "@core/components/icon";
 import { FolderOpenIcon, PlusIcon } from "@heroicons/react/24/solid";
-import type api from "@core/libraries/api";
+import clientApi from "@core/libraries/api/client";
+import serverApi from "@core/libraries/api/server";
 import { Accordion, AccordionItem } from "@nextui-org/react";
 import cn from "@core/utilities/cn";
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 type Props = {
   name: string;
-  collection: Awaited<ReturnType<typeof api.server.get.collections>>[0];
+  collection: Awaited<ReturnType<typeof serverApi.get.collections>>[0];
 };
 
 const Folder = ({ name, collection }: Props) => {
   const count = collection._count.snippets;
 
-  const [createSnippet, setCreateSnippet] = useState(false);
+  const [isCreateSnippet, setIsCreateSnippet] = useState(false);
   const [inputValue, setInputValue] = useState("");
+
+  const createSnippet = clientApi.create.snippet;
+
+  const router = useRouter();
 
   return (
     <Accordion
@@ -59,21 +65,24 @@ const Folder = ({ name, collection }: Props) => {
         </div>
 
         <div className="flex flex-col gap-2">
-          {createSnippet && (
+          {isCreateSnippet && (
             <div
               className="flex items-center gap-2 pl-3"
+              role="button"
               tabIndex={-1}
-              onKeyDown={(e) => {
+              onKeyDown={async (e) => {
                 if (e.key === "Enter") {
                   e.preventDefault();
-                  const newSnippet = {
+                  await createSnippet({
                     name: inputValue,
-                    id: String(snippets.length + 1),
+                    collection: { connect: { id: collection.id } },
                     language: "JavaScript",
-                  };
+                    code: "",
+                    description: "",
+                  });
                   setInputValue("");
-                  setCreateSnippet(false);
-                  snippets.push(newSnippet);
+                  setIsCreateSnippet(false);
+                  router.refresh();
                 }
               }}>
               <input
@@ -86,7 +95,7 @@ const Folder = ({ name, collection }: Props) => {
           )}
 
           <button
-            onClick={() => setCreateSnippet(true)}
+            onClick={() => setIsCreateSnippet(true)}
             className="mt-2 flex w-full items-center gap-2 px-4 text-white/50">
             <Icon Element={PlusIcon} />
             <span className="text-sm">Add Snippet</span>
