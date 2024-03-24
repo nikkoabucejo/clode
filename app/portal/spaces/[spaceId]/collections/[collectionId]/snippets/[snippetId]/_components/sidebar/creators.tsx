@@ -13,7 +13,7 @@ const Creators = () => {
 
   const inputRef = useRef(null);
 
-  const createCollection = api.create.collection;
+  const createCollection = api.client.create.collection;
 
   const router = useRouter();
 

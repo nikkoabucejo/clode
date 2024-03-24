@@ -9,8 +9,8 @@ const api = {
     },
     create: {
       snippet: createSnippet,
+      collection: createCollection
     },
-    collection: createCollection
   },
 };
 

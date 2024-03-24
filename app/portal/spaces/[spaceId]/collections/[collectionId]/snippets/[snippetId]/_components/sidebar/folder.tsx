@@ -14,7 +14,7 @@ import type API from "@core/libraries/api/server";
 
 type Props = {
   name: string;
-  collection: Awaited<ReturnType<typeof API.get.collections>>[0];
+  collection: Awaited<ReturnType<typeof API.server.get.collections>>[0];
 };
 
 const Folder = ({ name, collection }: Props) => {
@@ -24,7 +24,7 @@ const Folder = ({ name, collection }: Props) => {
   const [inputValue, setInputValue] = useState("");
   const [selectedKeys, setSelectedKeys] = useState(new Set([collectionId]));
 
-  const createSnippet = api.create.snippet;
+  const createSnippet = api.client.create.snippet;
 
   const router = useRouter();
 
