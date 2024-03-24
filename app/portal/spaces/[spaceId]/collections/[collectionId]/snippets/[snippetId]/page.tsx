@@ -8,9 +8,10 @@ type Props = {
 };
 
 const Snippet: Page<Props> = async ({ params }) => {
-  const { spaceId, collectionId } = params;
+  const { spaceId, collectionId, snippetId } = params;
   const space = await api.server.get.space(spaceId);
   const collection = await api.server.get.collection(collectionId);
+  const snippet = await api.server.get.snippet(snippetId);
 
   const encrypted = agent.encrypt(`import Editor from "@core/components/editor";
 import agent from "@core/libraries/agent";
@@ -50,7 +51,7 @@ export default Snippet;`);
 
   return (
     <main className="max-h-full space-y-8 overflow-y-auto p-8">
-      <Heading space={space} collection={collection} />
+      <Heading space={space} collection={collection} snippet={snippet}/>
       {/* @ts-ignore */}
       <Editor snippet={{ code: decrypted }} />
     </main>

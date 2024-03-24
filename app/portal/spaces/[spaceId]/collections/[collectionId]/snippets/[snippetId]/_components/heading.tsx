@@ -7,9 +7,10 @@ import { BreadcrumbItem, Breadcrumbs } from "@nextui-org/react";
 type Props = {
   space: Awaited<ReturnType<typeof api.server.get.space>>;
   collection: Awaited<ReturnType<typeof api.server.get.collection>>;
+  snippet: Awaited<ReturnType<typeof api.server.get.snippet>>;
 };
 
-const Heading = ({ space, collection }: Props) => {
+const Heading = ({ space, collection, snippet }: Props) => {
   return (
     <div className="space-y-4">
       <Breadcrumbs
@@ -21,20 +22,17 @@ const Heading = ({ space, collection }: Props) => {
         <BreadcrumbItem className="capitalize" isDisabled>
           {collection.name}
         </BreadcrumbItem>
-        <BreadcrumbItem isDisabled>Sample React Snippet</BreadcrumbItem>
+        <BreadcrumbItem isDisabled>{snippet.name}</BreadcrumbItem>
       </Breadcrumbs>
 
       <div className="space-y-2">
         <div className="flex items-center gap-4">
-          <h1 className="text-2xl font-bold ">Sample React Snippet</h1>
-          <Language>Javascript</Language>
+          <h1 className="text-2xl font-bold ">{snippet.name}</h1>
+          <Language>{snippet.language}</Language>
         </div>
 
         <p className="text-sm">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi rem
-          doloribus similique ea excepturi, harum cum sapiente corporis error
-          fugit aut doloremque fuga enim vel, iusto explicabo esse illo amet.
-          Deleniti corrupti laborum similique earum modi minus a iure eaque
+          {snippet.description || "No description provided."}
         </p>
       </div>
     </div>
