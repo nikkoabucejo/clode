@@ -3,7 +3,6 @@ import Directory from "./directory";
 import Icon from "@core/components/icon";
 import { ChevronUpDownIcon } from "@heroicons/react/24/solid";
 import User from "./user";
-import Creators from "./creators";
 
 type Props = {
   spaceId: Params["spaceId"];
@@ -19,10 +18,7 @@ const Sidebar = async ({ spaceId }: Props) => {
         <span className="text-xl font-bold">My Space</span>
         <Icon Element={ChevronUpDownIcon} className="ml-auto" />
       </div>
-      <div>
-        <Creators />
-        <Directory collections={collections} />
-      </div>
+      <Directory collections={collections} />
       <User user={user} />
     </aside>
   );

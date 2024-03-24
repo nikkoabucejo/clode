@@ -4,27 +4,23 @@ import Icon from "@core/components/icon";
 import api from "@core/libraries/api/client";
 import cn from "@core/utilities/cn";
 import Link from "next/link";
-
-import { FolderOpenIcon, PlusIcon } from "@heroicons/react/24/solid";
+import { PlusIcon, FolderOpenIcon } from "@heroicons/react/24/outline";
+import { FolderIcon } from "@heroicons/react/24/solid";
 import { Accordion, AccordionItem } from "@nextui-org/react";
 import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-
-import type API from "@core/libraries/api/server";
+import API from "@core/types/api";
 
 type Props = {
   name: string;
-  collection: Awaited<ReturnType<typeof API.server.get.collections>>[0];
+  collection: Awaited<ReturnType<API["server"]["get"]["collections"]>>[0];
 };
 
 const Folder = ({ name, collection }: Props) => {
-  const { collectionId } = useParams<Params>();
-  const count = collection._count.snippets;
+  const { collectionId, snippetId } = useParams<Params>();
   const [isCreateSnippet, setIsCreateSnippet] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [selectedKeys, setSelectedKeys] = useState(new Set([collectionId]));
-
-  const createSnippet = api.client.create.snippet;
 
   const router = useRouter();
 
@@ -42,70 +38,86 @@ const Folder = ({ name, collection }: Props) => {
       }}>
       <AccordionItem
         key={collection.id}
+        classNames={{
+          content: "p-0 pb-6",
+        }}
         title={
-          <div className="flex items-center justify-between">
+          <div
+            className={cn(
+              "group flex items-center justify-between gap-2 hover:opacity-100",
+              {
+                "opacity-40": collectionId !== collection.id,
+              },
+            )}>
             <span>{name}</span>
-            <span>{count}</span>
+            <div
+              role="button"
+              className="relative z-10 hidden group-hover:block"
+              onClick={(event) => {
+                event.stopPropagation();
+                setIsCreateSnippet(true);
+              }}>
+              <Icon Element={PlusIcon} />
+            </div>
           </div>
         }
-        startContent={<Icon Element={FolderOpenIcon} className="h-4 w-4" />}>
+        startContent={
+          <Icon
+            Element={
+              collectionId === collection.id ? FolderIcon : FolderOpenIcon
+            }
+          />
+        }>
         <div className="relative space-y-1 pl-2.5 pr-1">
-          <div className="absolute -top-[18px] h-full w-[1px] bg-zinc-800" />
-          {collection.snippets.map((snippet, index) => (
-            <div key={snippet.id} className="relative flex items-center gap-1">
-              <div>
+          <div className="absolute -top-[14px] h-full w-[1px] bg-zinc-800" />
+          <div className="relative flex items-center gap-1">
+            {isCreateSnippet && (
+              <>
                 <div className="relative h-[1px] w-4 bg-zinc-800" />
-              </div>
+                <div
+                  className="block w-full rounded bg-slate-800 px-4 py-2 text-sm"
+                  role="button"
+                  tabIndex={-1}
+                  onKeyDown={async (e) => {
+                    if (e.key === "Enter") {
+                      e.preventDefault();
+                      await api.client.create.snippet({
+                        name: inputValue,
+                        collection: { connect: { id: collection.id } },
+                        language: "JavaScript",
+                        code: "",
+                        description: "",
+                      });
+                      setInputValue("");
+                      setIsCreateSnippet(false);
+                      router.refresh();
+                    }
+                  }}>
+                  <input
+                    type="text"
+                    className="w-full bg-transparent focus:outline-none"
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                  />
+                </div>
+              </>
+            )}
+          </div>
+          {collection.snippets.map((snippet) => (
+            <div key={snippet.id} className="relative flex items-center gap-1">
+              <div className="relative h-[1px] w-4 bg-zinc-800" />
               <Link
                 href={`/portal/spaces/${collection.spaceId}/collections/${collection.id}/snippets/${snippet.id}`}
                 className={cn(
-                  "block w-full rounded bg-panel-secondary px-4 py-2 text-sm hover:bg-panel-tertiary",
+                  "block w-full rounded p-1 text-sm hover:opacity-100",
                   {
-                    "bg-panel-tertiary": index === 1,
+                    "opacity-40": snippetId !== snippet.id,
                   },
                 )}>
                 {snippet.name}
               </Link>
             </div>
           ))}
-        </div>
-
-        <div className="flex flex-col gap-2">
-          {isCreateSnippet && (
-            <div
-              className="flex items-center gap-2 pl-3"
-              role="button"
-              tabIndex={-1}
-              onKeyDown={async (e) => {
-                if (e.key === "Enter") {
-                  e.preventDefault();
-                  await createSnippet({
-                    name: inputValue,
-                    collection: { connect: { id: collection.id } },
-                    language: "JavaScript",
-                    code: "",
-                    description: "",
-                  });
-                  setInputValue("");
-                  setIsCreateSnippet(false);
-                  router.refresh();
-                }
-              }}>
-              <input
-                type="text"
-                className="w-full border border-line bg-black p-1 text-sm focus:outline-none"
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-              />
-            </div>
-          )}
-
-          <button
-            onClick={() => setIsCreateSnippet(true)}
-            className="mt-2 flex w-full items-center gap-2 px-4 text-white/50">
-            <Icon Element={PlusIcon} />
-            <span className="text-sm">Add Snippet</span>
-          </button>
         </div>
       </AccordionItem>
     </Accordion>
