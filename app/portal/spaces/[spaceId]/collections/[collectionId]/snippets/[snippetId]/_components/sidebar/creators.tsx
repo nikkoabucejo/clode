@@ -1,11 +1,10 @@
 "use client";
 
 import Icon from "@core/components/icon";
-import {
-  CodeBracketSquareIcon,
-  FolderPlusIcon,
-} from "@heroicons/react/24/outline";
+import api from "@core/libraries/api/client";
+import { FolderPlusIcon } from "@heroicons/react/24/outline";
 import { FolderIcon } from "@heroicons/react/24/solid";
+import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 
 const Creators = () => {
@@ -14,6 +13,10 @@ const Creators = () => {
 
   const inputRef = useRef(null);
 
+  const createCollection = api.create.collection;
+
+  const router = useRouter()
+  
   return (
     <div className="mb-2 flex flex-col gap-2">
       {/* buttons */}
@@ -35,12 +38,19 @@ const Creators = () => {
         <div
           className="flex items-center gap-2 pl-3"
           tabIndex={-1}
-          onKeyDown={(e) => {
+          role="button"
+          onKeyDown={async (e) => {
             if (e.key === "Enter") {
               e.preventDefault();
-              console.log("created", inputValue);
+              await createCollection({
+                name: inputValue,
+                space: {
+                  connect: { id: "fcc7bf7f-079d-44c7-8db0-0e217a286bc3" },
+                },
+              });
               setInputValue("");
               setCreateDirectory(false);
+              router.refresh()
             }
           }}>
           <Icon Element={FolderIcon} className="text-yellow-500" />
