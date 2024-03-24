@@ -45,7 +45,7 @@ const Folder = ({ name, collection }: Props) => {
         startContent={<Icon Element={FolderOpenIcon} className="h-4 w-4" />}>
         <div className="relative space-y-1 pl-2.5 pr-1">
           <div className="absolute -top-[18px] h-full w-[1px] bg-zinc-800" />
-          {snippets.map((snippet, index) => (
+          {collection.snippets.map((snippet, index) => (
             <div key={snippet.id} className="relative flex items-center gap-1">
               <div>
                 <div className="relative h-[1px] w-4 bg-zinc-800" />
@@ -107,11 +107,3 @@ const Folder = ({ name, collection }: Props) => {
 };
 
 export default Folder;
-
-export const snippets = [
-  { name: "useState", id: "1", language: "JavaScript" },
-  { name: "useEffect", id: "2", language: "JavaScript" },
-  { name: "useRef", id: "3", language: "TypeScript" },
-  { name: "bubbleSort", id: "4", language: "Python" },
-  { name: "quickSort", id: "5", language: "Python" },
-];
