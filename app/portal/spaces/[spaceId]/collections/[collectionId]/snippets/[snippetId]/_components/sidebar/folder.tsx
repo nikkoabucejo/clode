@@ -51,7 +51,7 @@ const Folder = ({ name, collection }: Props) => {
                 <div className="relative h-[1px] w-4 bg-zinc-800" />
               </div>
               <Link
-                href="#"
+                href={`/portal/spaces/${collection.spaceId}/collections/${collection.id}/snippets/${snippet.id}`}
                 className={cn(
                   "block w-full rounded bg-panel-secondary px-4 py-2 text-sm hover:bg-panel-tertiary",
                   {
