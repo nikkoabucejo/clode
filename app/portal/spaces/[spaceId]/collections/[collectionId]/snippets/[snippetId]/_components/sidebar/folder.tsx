@@ -4,7 +4,7 @@ import Icon from "@core/components/icon";
 import { FolderOpenIcon } from "@heroicons/react/24/solid";
 import type api from "@core/libraries/api";
 import { Accordion, AccordionItem } from "@nextui-org/react";
-import cn from "@core/libraries/cn";
+import cn from "@core/utilities/cn";
 import Link from "next/link";
 
 type Props = {

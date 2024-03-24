@@ -1,5 +1,5 @@
 import Editor from "@core/components/editor";
-import agent from "@core/libraries/agent";
+import agent from "@core/utilities/agent";
 import Heading from "./_components/heading";
 import api from "@core/libraries/api";
 

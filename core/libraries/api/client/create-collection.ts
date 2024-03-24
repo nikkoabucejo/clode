@@ -1,5 +1,5 @@
-import fetcher from "@core/libraries/fetcher";
-import Grab from "@core/libraries/grab";
+import fetcher from "@core/utilities/fetcher";
+import Grab from "@core/utilities/grab";
 import schemas from "@core/schemas";
 import { z } from "zod";
 

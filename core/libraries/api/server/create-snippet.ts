@@ -1,5 +1,5 @@
 import database from "@core/libraries/database";
-import Grab from "@core/libraries/grab";
+import Grab from "@core/utilities/grab";
 import schemas from "@core/schemas";
 import { z } from "zod";
 

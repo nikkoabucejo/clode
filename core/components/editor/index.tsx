@@ -6,7 +6,7 @@ import { Card } from "@nextui-org/react";
 import { type Snippet } from "@prisma/client";
 import Icon from "@core/components/icon";
 import { ClipboardIcon } from "@heroicons/react/24/outline";
-import handleCopyTextToClipboard from "@core/libraries/copy-clipboard";
+import handleCopyTextToClipboard from "@core/utilities/copy-clipboard";
 
 type Props = {
   snippet: Snippet;

@@ -1,6 +1,6 @@
 import database from "@core/libraries/database";
-import generate from "@core/libraries/generate";
-import Grab from "@core/libraries/grab";
+import generate from "@core/utilities/generate";
+import Grab from "@core/utilities/grab";
 
 type Payload = { id: ID; email: string };
 
