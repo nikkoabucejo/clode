@@ -1,22 +1,38 @@
 "use client";
 
 import Icon from "@core/components/icon";
-import { FolderOpenIcon } from "@heroicons/react/24/solid";
-import type api from "@core/libraries/api";
-import { Accordion, AccordionItem } from "@nextui-org/react";
+import api from "@core/libraries/api/client";
 import cn from "@core/utilities/cn";
 import Link from "next/link";
 
+import { FolderOpenIcon, PlusIcon } from "@heroicons/react/24/solid";
+import { Accordion, AccordionItem } from "@nextui-org/react";
+import { useState } from "react";
+import { useParams, useRouter } from "next/navigation";
+
+import type API from "@core/libraries/api/server";
+
 type Props = {
   name: string;
-  collection: Awaited<ReturnType<typeof api.server.get.collections>>[0];
+  collection: Awaited<ReturnType<typeof API.server.get.collections>>[0];
 };
 
 const Folder = ({ name, collection }: Props) => {
+  const { collectionId } = useParams<Params>();
   const count = collection._count.snippets;
+  const [isCreateSnippet, setIsCreateSnippet] = useState(false);
+  const [inputValue, setInputValue] = useState("");
+  const [selectedKeys, setSelectedKeys] = useState(new Set([collectionId]));
+
+  const createSnippet = api.client.create.snippet;
+
+  const router = useRouter();
 
   return (
     <Accordion
+      selectedKeys={selectedKeys}
+      // @ts-ignore
+      onSelectionChange={setSelectedKeys}
       itemClasses={{
         trigger: "p-1",
         title: "text-white text-sm",
@@ -25,7 +41,7 @@ const Folder = ({ name, collection }: Props) => {
         content: "overflow-y-auto max-h-unit-96",
       }}>
       <AccordionItem
-        key={1}
+        key={collection.id}
         title={
           <div className="flex items-center justify-between">
             <span>{name}</span>
@@ -35,13 +51,13 @@ const Folder = ({ name, collection }: Props) => {
         startContent={<Icon Element={FolderOpenIcon} className="h-4 w-4" />}>
         <div className="relative space-y-1 pl-2.5 pr-1">
           <div className="absolute -top-[18px] h-full w-[1px] bg-zinc-800" />
-          {snippets.map((snippet, index) => (
+          {collection.snippets.map((snippet, index) => (
             <div key={snippet.id} className="relative flex items-center gap-1">
               <div>
                 <div className="relative h-[1px] w-4 bg-zinc-800" />
               </div>
               <Link
-                href="#"
+                href={`/portal/spaces/${collection.spaceId}/collections/${collection.id}/snippets/${snippet.id}`}
                 className={cn(
                   "block w-full rounded bg-panel-secondary px-4 py-2 text-sm hover:bg-panel-tertiary",
                   {
@@ -53,17 +69,47 @@ const Folder = ({ name, collection }: Props) => {
             </div>
           ))}
         </div>
+
+        <div className="flex flex-col gap-2">
+          {isCreateSnippet && (
+            <div
+              className="flex items-center gap-2 pl-3"
+              role="button"
+              tabIndex={-1}
+              onKeyDown={async (e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  await createSnippet({
+                    name: inputValue,
+                    collection: { connect: { id: collection.id } },
+                    language: "JavaScript",
+                    code: "",
+                    description: "",
+                  });
+                  setInputValue("");
+                  setIsCreateSnippet(false);
+                  router.refresh();
+                }
+              }}>
+              <input
+                type="text"
+                className="w-full border border-line bg-black p-1 text-sm focus:outline-none"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+              />
+            </div>
+          )}
+
+          <button
+            onClick={() => setIsCreateSnippet(true)}
+            className="mt-2 flex w-full items-center gap-2 px-4 text-white/50">
+            <Icon Element={PlusIcon} />
+            <span className="text-sm">Add Snippet</span>
+          </button>
+        </div>
       </AccordionItem>
     </Accordion>
   );
 };
 
 export default Folder;
-
-export const snippets = [
-  { name: "useState", id: "1", language: "JavaScript" },
-  { name: "useEffect", id: "2", language: "JavaScript" },
-  { name: "useRef", id: "3", language: "TypeScript" },
-  { name: "bubbleSort", id: "4", language: "Python" },
-  { name: "quickSort", id: "5", language: "Python" },
-];

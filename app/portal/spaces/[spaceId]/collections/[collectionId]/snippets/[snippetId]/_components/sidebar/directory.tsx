@@ -6,7 +6,12 @@ type Props = {
 };
 
 const Directory = ({ collections }: Props) => {
-  return collections.map((collection) => (
+  
+  const sortedCollections = collections.toSorted((a: typeof collections[0], b: typeof collections[0]) => {
+    return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
+  });
+
+  return sortedCollections.map((collection) => (
     <div key={collection.id} className="space-y-2">
       <Folder
         key={collection.id}

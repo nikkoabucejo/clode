@@ -1,3 +1,4 @@
+import createCollection from "./create-collection";
 import createSnippet from "./create-snippet";
 import getSnippet from "./get-snippet";
 
@@ -8,6 +9,7 @@ const api = {
     },
     create: {
       snippet: createSnippet,
+      collection: createCollection
     },
   },
 };
