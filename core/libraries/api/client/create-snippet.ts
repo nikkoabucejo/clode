@@ -2,16 +2,17 @@ import fetcher from "@core/utilities/fetcher";
 import Grab from "@core/utilities/grab";
 import schemas from "@core/schemas";
 import { z } from "zod";
+import api from "..";
 
-type Data = z.infer<typeof schemas.create.snippet>;
-
-const createSnippet = async (data: Data) => {
+const createSnippet = async (data: z.infer<typeof schemas.create.snippet>) => {
   try {
-    const response = await fetcher(`/api/snippets`, {
-      method: "POST",
-      body: JSON.stringify(data),
-    });
-    return await response.json();
+    return await fetcher<ReturnType<typeof api.server.create.snippet>>(
+      `/api/snippets`,
+      {
+        method: "POST",
+        data,
+      },
+    );
   } catch (error) {
     throw new Error(new Grab(error).error().message);
   }

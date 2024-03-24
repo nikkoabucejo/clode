@@ -3,9 +3,7 @@ import Grab from "@core/utilities/grab";
 import schemas from "@core/schemas";
 import { z } from "zod";
 
-type Data = z.infer<typeof schemas.create.snippet>;
-
-const createSnippet = async (data: Data) => {
+const createSnippet = async (data: z.infer<typeof schemas.create.snippet>) => {
   try {
     const createdSnippet = await database.snippet.create({
       data,

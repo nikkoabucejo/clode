@@ -2,16 +2,19 @@ import fetcher from "@core/utilities/fetcher";
 import Grab from "@core/utilities/grab";
 import schemas from "@core/schemas";
 import { z } from "zod";
+import api from "..";
 
-type Data = z.infer<typeof schemas.create.collection>;
-
-const createCollection = async (data: Data) => {
+const createCollection = async (
+  data: z.infer<typeof schemas.create.collection>,
+) => {
   try {
-    const response = await fetcher(`/api/collections`, {
-      method: "POST",
-      body: JSON.stringify(data),
-    });
-    return await response.json();
+    return await fetcher<ReturnType<typeof api.server.create.collection>>(
+      `/api/collections`,
+      {
+        method: "POST",
+        data,
+      },
+    );
   } catch (error) {
     throw new Error(new Grab(error).error().message);
   }

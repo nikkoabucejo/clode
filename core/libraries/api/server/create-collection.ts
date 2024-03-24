@@ -3,9 +3,9 @@ import Grab from "@core/utilities/grab";
 import schemas from "@core/schemas";
 import { z } from "zod";
 
-type Data = z.infer<typeof schemas.create.collection>;
-
-const createCollection = async (data: Data) => {
+const createCollection = async (
+  data: z.infer<typeof schemas.create.collection>,
+) => {
   try {
     const createdCollection = await database.collection.create({
       data,
