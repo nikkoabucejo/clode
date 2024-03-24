@@ -1,7 +1,7 @@
 import Editor from "@core/components/editor";
 import agent from "@core/utilities/agent";
 import Heading from "./_components/heading";
-import api from "@core/libraries/api";
+import api from "@core/libraries/api/server";
 
 type Props = {
   params: Params;
@@ -15,7 +15,7 @@ const Snippet: Page<Props> = async ({ params }) => {
   const encrypted = agent.encrypt(`import Editor from "@core/components/editor";
 import agent from "@core/libraries/agent";
 import Heading from "./_components/heading";
-import api from "@core/libraries/api";
+import api from "@core/libraries/api/server";
 
 type Props = {
   params: Params;

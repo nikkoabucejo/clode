@@ -1,13 +1,15 @@
 import createSnippet from "./create-snippet";
 import getSnippet from "./get-snippet";
 
-const client = {
-  get: {
-    snippet: getSnippet,
-  },
-  create: {
-    snippet: createSnippet,
+const api = {
+  client: {
+    get: {
+      snippet: getSnippet,
+    },
+    create: {
+      snippet: createSnippet,
+    },
   },
 };
 
-export default client;
+export default api;

@@ -1,7 +1,7 @@
 import database from "@core/libraries/database";
 import { cache } from "react";
 import Grab from "@core/utilities/grab";
-import api from "@core/libraries/api";
+import api from ".";
 
 const getAccounts = cache(async () => {
   try {
