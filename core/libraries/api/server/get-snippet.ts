@@ -9,7 +9,7 @@ const getSnippet = cache(async (id: ID) => {
       where: { id },
     });
 
-    snippet.code = agent.decrypt(snippet.code);
+    if (snippet.code) snippet.code = agent.decrypt(snippet.code);
 
     return snippet;
   } catch (error) {

@@ -8,7 +8,8 @@ import { Accordion, AccordionItem } from "@nextui-org/react";
 import cn from "@core/utilities/cn";
 import Link from "next/link";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
+import generate from "@core/utilities/generate";
 
 type Props = {
   name: string;
@@ -16,10 +17,11 @@ type Props = {
 };
 
 const Folder = ({ name, collection }: Props) => {
+  const { collectionId } = useParams<Params>();
   const count = collection._count.snippets;
-
   const [isCreateSnippet, setIsCreateSnippet] = useState(false);
   const [inputValue, setInputValue] = useState("");
+  const [selectedKeys, setSelectedKeys] = useState(new Set([collectionId]));
 
   const createSnippet = clientApi.create.snippet;
 
@@ -27,6 +29,9 @@ const Folder = ({ name, collection }: Props) => {
 
   return (
     <Accordion
+      selectedKeys={selectedKeys}
+      // @ts-ignore
+      onSelectionChange={setSelectedKeys}
       itemClasses={{
         trigger: "p-1",
         title: "text-white text-sm",
@@ -35,7 +40,7 @@ const Folder = ({ name, collection }: Props) => {
         content: "overflow-y-auto max-h-unit-96",
       }}>
       <AccordionItem
-        key={1}
+        key={collection.id}
         title={
           <div className="flex items-center justify-between">
             <span>{name}</span>
