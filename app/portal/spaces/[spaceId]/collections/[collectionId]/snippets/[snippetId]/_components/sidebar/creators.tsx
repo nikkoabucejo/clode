@@ -26,12 +26,8 @@ const Creators = () => {
               setInputValue("");
             }
           }}
-          className={`rounded p-1 ${createDirectory? "bg-white/10": "hover:bg-white/10"}`}>
+          className={`rounded p-1 ${createDirectory ? "bg-white/10" : "hover:bg-white/10"}`}>
           <Icon Element={FolderPlusIcon} />
-        </button>
-
-        <button className="rounded p-1 hover:bg-white/10">
-          <Icon Element={CodeBracketSquareIcon} />
         </button>
       </div>
 

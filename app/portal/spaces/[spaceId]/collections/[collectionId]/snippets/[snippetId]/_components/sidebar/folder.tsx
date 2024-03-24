@@ -1,11 +1,12 @@
 "use client";
 
 import Icon from "@core/components/icon";
-import { FolderOpenIcon } from "@heroicons/react/24/solid";
+import { FolderOpenIcon, PlusIcon } from "@heroicons/react/24/solid";
 import type api from "@core/libraries/api";
 import { Accordion, AccordionItem } from "@nextui-org/react";
 import cn from "@core/utilities/cn";
 import Link from "next/link";
+import { useState } from "react";
 
 type Props = {
   name: string;
@@ -14,6 +15,9 @@ type Props = {
 
 const Folder = ({ name, collection }: Props) => {
   const count = collection._count.snippets;
+
+  const [createSnippet, setCreateSnippet] = useState(false);
+  const [inputValue, setInputValue] = useState("");
 
   return (
     <Accordion
@@ -52,6 +56,41 @@ const Folder = ({ name, collection }: Props) => {
               </Link>
             </div>
           ))}
+        </div>
+
+        <div className="flex flex-col gap-2">
+          {createSnippet && (
+            <div
+              className="flex items-center gap-2 pl-3"
+              tabIndex={-1}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  const newSnippet = {
+                    name: inputValue,
+                    id: String(snippets.length + 1),
+                    language: "JavaScript",
+                  };
+                  setInputValue("");
+                  setCreateSnippet(false);
+                  snippets.push(newSnippet);
+                }
+              }}>
+              <input
+                type="text"
+                className="w-full border border-line bg-black p-1 text-sm focus:outline-none"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+              />
+            </div>
+          )}
+
+          <button
+            onClick={() => setCreateSnippet(true)}
+            className="mt-2 flex w-full items-center gap-2 px-4 text-white/50">
+            <Icon Element={PlusIcon} />
+            <span className="text-sm">Add Snippet</span>
+          </button>
         </div>
       </AccordionItem>
     </Accordion>
