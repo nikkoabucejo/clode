@@ -1,4 +1,4 @@
-import auth from "@libraries/auth";
+import auth from "@core/libraries/auth";
 import { type Session } from "next-auth";
 
 type Context = { message: string; status: number };

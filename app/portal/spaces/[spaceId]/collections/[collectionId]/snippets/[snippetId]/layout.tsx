@@ -1,4 +1,4 @@
-import "@styles/globals.css";
+import "@core/styles/globals.css";
 import { Inter } from "next/font/google";
 import Sidebar from "./_components/sidebar";
 

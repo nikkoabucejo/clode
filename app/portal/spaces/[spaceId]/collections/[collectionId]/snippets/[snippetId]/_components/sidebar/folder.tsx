@@ -1,10 +1,10 @@
 "use client";
 
-import Icon from "@components/icon";
+import Icon from "@core/components/icon";
 import { FolderOpenIcon } from "@heroicons/react/24/solid";
-import type api from "@libraries/api";
+import type api from "@core/libraries/api";
 import { Accordion, AccordionItem } from "@nextui-org/react";
-import cn from "@utilities/cn";
+import cn from "@core/utilities/cn";
 import Link from "next/link";
 
 type Props = {

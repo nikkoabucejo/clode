@@ -13,8 +13,8 @@ import {
   ArrowLeftStartOnRectangleIcon,
   UserCircleIcon,
 } from "@heroicons/react/24/solid";
-import Icon from "@components/icon";
-import type api from "@libraries/api";
+import Icon from "@core/components/icon";
+import type api from "@core/libraries/api";
 
 type Props = {
   user: Awaited<ReturnType<typeof api.server.get.user>>;

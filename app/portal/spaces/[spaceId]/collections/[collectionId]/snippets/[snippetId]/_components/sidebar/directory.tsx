@@ -1,5 +1,5 @@
 import Folder from "./folder";
-import type api from "@libraries/api";
+import type api from "@core/libraries/api";
 
 type Props = {
   collections: Awaited<ReturnType<typeof api.server.get.collections>>;

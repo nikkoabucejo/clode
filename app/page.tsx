@@ -1,6 +1,6 @@
-import api from "@libraries/api";
-import { SignIn, SignOut } from "@components/test";
-import auth from "@libraries/auth";
+import api from "@core/libraries/api";
+import { SignIn, SignOut } from "@core/components/test";
+import auth from "@core/libraries/auth";
 
 const Home: Page = async () => {
   const session = await auth();

@@ -2,7 +2,7 @@ import NextAuth from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import callbacks from "./callbacks";
 import pages from "./pages";
-import database from "@libraries/database";
+import database from "@core/libraries/database";
 import providers from "./providers";
 
 const {

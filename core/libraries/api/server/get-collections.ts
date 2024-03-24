@@ -1,6 +1,6 @@
-import database from "@libraries/database";
+import database from "@core/libraries/database";
 import { cache } from "react";
-import Grab from "@libraries/grab";
+import Grab from "@core/utilities/grab";
 
 const getCollections = cache(async (spaceId: ID) => {
   try {

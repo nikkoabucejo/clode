@@ -1,4 +1,4 @@
-import mailer, { templates } from "@libraries/mailer";
+import mailer, { templates } from "@core/libraries/mailer";
 import { type NextAuthConfig } from "next-auth";
 import discord from "next-auth/providers/discord";
 import github from "next-auth/providers/github";
