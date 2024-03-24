@@ -2,7 +2,7 @@ import fetcher from "@core/utilities/fetcher";
 import Grab from "@core/utilities/grab";
 import schemas from "@core/schemas";
 import { z } from "zod";
-import api from "..";
+import api from "../server";
 
 const createCollection = async (
   data: z.infer<typeof schemas.create.collection>,
