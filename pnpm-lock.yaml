@@ -20,6 +20,9 @@ dependencies:
   '@prisma/client':
     specifier: ^5.9.1
     version: 5.9.1(prisma@5.9.1)
+  '@tanstack/react-query':
+    specifier: ^5.28.6
+    version: 5.28.6(react@18.2.0)
   '@uiw/react-textarea-code-editor':
     specifier: ^3.0.2
     version: 3.0.2(@babel/runtime@7.23.9)(react-dom@18.2.0)(react@18.2.0)
@@ -3275,6 +3278,19 @@ packages:
     resolution: {integrity: sha512-E4KcWTpoLHqwPHLxidpOqQbcrZVgi0rsmmZXUle1jXmJfuIf/UWpczUJ7MZZ5tlxytgJXyp0w4PGkkeLiuIdZw==}
     dependencies:
       tslib: 2.6.2
+    dev: false
+
+  /@tanstack/query-core@5.28.6:
+    resolution: {integrity: sha512-hnhotV+DnQtvtR3jPvbQMPNMW4KEK0J4k7c609zJ8muiNknm+yoDyMHmxTWM5ZnlZpsz0zOxYFr+mzRJNHWJsA==}
+    dev: false
+
+  /@tanstack/react-query@5.28.6(react@18.2.0):
+    resolution: {integrity: sha512-/DdYuDBSsA21Qbcder1R8Cr/3Nx0ZnA2lgtqKsLMvov8wL4+g0HBz/gWYZPlIsof7iyfQafyhg4wUVUsS3vWZw==}
+    peerDependencies:
+      react: ^18.0.0
+    dependencies:
+      '@tanstack/query-core': 5.28.6
+      react: 18.2.0
     dev: false
 
   /@testing-library/dom@9.3.4:
