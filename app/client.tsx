@@ -16,7 +16,7 @@ const Client = () => {
       },
     });
   };
-  return <div>Client</div>;
+  return <div className="text-black">Client</div>;
 };
 
 export default Client;
