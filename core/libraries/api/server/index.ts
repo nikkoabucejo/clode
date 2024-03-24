@@ -1,6 +1,7 @@
 import createCollection from "./create-collection";
 import createSnippet from "./create-snippet";
 import deleteAccount from "./delete-account";
+import deleteSnippet from "./delete-snippet";
 import getAccounts from "./get-accounts";
 import getCollection from "./get-collection";
 import getCollections from "./get-collections";
@@ -29,6 +30,7 @@ const server = {
   },
   delete: {
     account: deleteAccount,
+    snippet: deleteSnippet
   },
 };
 
