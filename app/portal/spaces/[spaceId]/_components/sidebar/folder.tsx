@@ -50,15 +50,14 @@ const Folder = ({ name, collection }: Props) => {
               },
             )}>
             <span>{name}</span>
-            <div
-              role="button"
+            <button
               className="relative z-10 hidden group-hover:block"
               onClick={(event) => {
                 event.stopPropagation();
-                setIsCreateSnippet(true);
+                setIsCreateSnippet(!isCreateSnippet);
               }}>
               <Icon Element={PlusIcon} />
-            </div>
+            </button>
           </div>
         }
         startContent={
@@ -81,7 +80,7 @@ const Folder = ({ name, collection }: Props) => {
                   onKeyDown={async (e) => {
                     if (e.key === "Enter") {
                       e.preventDefault();
-                      await api.client.create.snippet({
+                      const newSnippet = await api.client.create.snippet({
                         name: inputValue,
                         collection: { connect: { id: collection.id } },
                         language: "JavaScript",
@@ -90,6 +89,9 @@ const Folder = ({ name, collection }: Props) => {
                       });
                       setInputValue("");
                       setIsCreateSnippet(false);
+                      router.push(
+                        `/portal/spaces/${collection.spaceId}/collections/${collection.id}/snippets/${newSnippet.id}`,
+                      );
                       router.refresh();
                     }
                   }}>
