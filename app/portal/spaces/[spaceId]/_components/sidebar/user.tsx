@@ -14,10 +14,10 @@ import {
   UserCircleIcon,
 } from "@heroicons/react/24/solid";
 import Icon from "@core/components/icon";
-import type api from "@core/libraries/api";
+import API from "@core/types/api";
 
 type Props = {
-  user: Awaited<ReturnType<typeof api.server.get.user>>;
+  user: Awaited<ReturnType<API["server"]["get"]["user"]>>;
 };
 
 const User = ({ user }: Props) => {

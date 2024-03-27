@@ -13,8 +13,6 @@ const Creators = () => {
 
   const inputRef = useRef(null);
 
-  const createCollection = api.client.create.collection;
-
   const router = useRouter();
 
   return (
@@ -43,7 +41,7 @@ const Creators = () => {
             if (e.key === "Escape") setIsCreateCollection(false);
             if (e.key === "Enter") {
               e.preventDefault();
-              await createCollection({
+              await api.client.create.collection({
                 name: inputValue,
                 space: {
                   connect: { id: "fcc7bf7f-079d-44c7-8db0-0e217a286bc3" },

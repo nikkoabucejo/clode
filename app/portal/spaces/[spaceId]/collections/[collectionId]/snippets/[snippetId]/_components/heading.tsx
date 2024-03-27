@@ -1,13 +1,13 @@
 "use client";
 
 import Language from "@core/components/language";
-import type api from "@core/libraries/api";
+import API from "@core/types/api";
 import { BreadcrumbItem, Breadcrumbs } from "@nextui-org/react";
 
 type Props = {
-  space: Awaited<ReturnType<typeof api.server.get.space>>;
-  collection: Awaited<ReturnType<typeof api.server.get.collection>>;
-  snippet: Awaited<ReturnType<typeof api.server.get.snippet>>;
+  space: Awaited<ReturnType<API["server"]["get"]["space"]>>;
+  collection: Awaited<ReturnType<API["server"]["get"]["collection"]>>;
+  snippet: Awaited<ReturnType<API["server"]["get"]["snippet"]>>;
 };
 
 const Heading = ({ space, collection, snippet }: Props) => {
